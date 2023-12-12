@@ -1,0 +1,25 @@
+CHROM	POS	Change	dbSNP	Name	cDNA	Ref	Alt	gDNA	codon	RefAA	AltAA	Exon	Class	Remark
+X	154546061	T>C	rs137852340	Gaohe	95	A	G	95	32	His	Arg	2	III	China 8
+X	154536168	G>C	rs78478128	Orissa	131	C	G	9987	44	Ala	Gly	3	III	India, Italy 11,12
+X	154536032	C>T	rs137852315	Metaponto	172	G	A	10123	58	Asp	Asn	4	III	Italy 17
+X	154536031	T>C	NA	Ho Chi Minh	173	A	G	10124	58	Asp	Gly	4	III	Vietnam (Kinh) 18
+X	154536002	C>T	rs1050828	A-	202	G	A	10153	68	Val	Met	4	III	China 25
+X	154535301	A>G	NA	Bao Loc	352	T	C	10852	118	Tyr	His	5	II	Vietnam 35
+X	154535300	T>G	rs2148331380	rs2148331380	353	A	C	10853	118	Tyr	Ser	5	?	?
+X	154535277	T>C	rs1050829	A	376	A	G	10876	126	Asn	Asp	5	IV	Africa Mediterranean 37
+X	154535270	A>G	rs78365220	Vanua Lava	383	T	C	10883	128	Leu	Pro	5	II	Southwestern Pacific 20
+X	154535261	C>A	rs137852341	Quing Yan, Chinese-4	392	G	T	10892	131	Gly	Val	5	III	China 41
+X	154534495	C>T	rs137852314	Mahidol	487	G	A	11658	163	Gly	Ser	6	II	South East Asia 51,52
+X	154534489	T>C	rs137852331	Taipei “Chinese-3”	493	A	G	11664	165	Asn	Asp	6	II	China 53
+X	154534419	G>A	rs5030868	Mediterranean, Dallas, “Sassari”	563	C	T	11734	188	Ser	Phe	6	II	Mediterranean 64
+X	154534390	G>A	rs137852330	Coimbra, Shunde	592	C	T	11763	198	Arg	Cys	6	II	India, Portugal Malaysa 67,68
+X	154533596	C>A	rs137852318	Bajo Maumere	844	G	T	12557	282	Asp	Tyr	8	III	Japan (Indonesia) 95
+X	154533122	C>T	rs137852327	Viangchan, Jammu	871	G	A	13031	291	Val	Met	9	II	China 76,103
+X	154533064	C>T	rs2070360793	Ludhiana	929	G	A	13089	310	Gly	Glu	9	II	India 106
+X	154533044	C>T	rs137852339	Kalyan-Kerala, Jamnaga, Rohini	949	G	A	13109	317	Glu	Lys	9	III	India 107,108
+X	154532990	C>T	rs5030869	Chatham	1003	G	A	13163	335	Ala	Thr	9	II	Italy, Asia, Africa 64
+X	154532969	G>A	rs137852342	Chinese-5	1024	C	T	13184	342	Leu	Phe	9	III	China 41
+X	154532459	C>T	rs782098548	Surabaya	1291	G	A	13694	431	Val	Met	11	II	Indonesia 140
+X	154532390	G>A	rs398123546	Union, Maewo, Chinese-2	1360	C	T	13763	454	Arg	Cys	11	II	Italy, Spain, China, Japan 74,144,145
+X	154532269	C>A	rs72554665	Canton, Taiwan-Hakka, Gifu-like	1376	G	T	13884	459	Arg	Leu	12	II	Japan, Italy 147,148
+X	154532257	C>T	rs72554664	Kaiping, Anant, Dhon	1388	G	A	13896	463	Arg	His	12	II	China 145,148
