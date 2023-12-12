@@ -1,0 +1,29 @@
+
+min_read_qual: 10
+min_read_len: 2000
+max_read_len: 10000
+headcrop: 40
+tailcrop: 40
+mindepth: 20
+min_variant_qual: 30
+
+# to satisfy global_params.smk
+read_length: -1
+platform: ONT
+instrument: ONT
+libprep: ONT
+
+refseq_file: refs/X.fasta
+refmap_file: refs/X.fasta.ont.mmi
+target_variants: refs/g6pd-variants.bed
+target_regions: refs/g6pd-regions.bed
+interval_file: refs/g6pd.bed
+interval_dir: refs/range_regions
+variant_info: refs/g6pd-variant-info.tsv
+
+regions:
+  - X
+
+# adjust this for het call assignment
+freebayes_extra_flags: --min-alternate-count 5 --min-alternate-fraction 0.25
+
