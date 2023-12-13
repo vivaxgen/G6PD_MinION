@@ -11,6 +11,7 @@ To install the pipeline and all of its dependencies (including reference sequenc
 
     "${SHELL}" <(curl -L https://raw.githubusercontent.com/vivaxgen/install/main/G6PD-pl.sh)
 
+Make sure that the installation completes sucessfully.
 Take a note of the activation script once the installation process finished.
 
 
@@ -36,9 +37,9 @@ Quick Start
     ngs-pl run-g6pd-discovery-variant-caller -o my_output my_data/*.fastq.gz
 
   Note that the default is using mpileup variant calling.
-  To use different variant calller, such as clair3, use the --snakefile option to direct the correct snakefile::
+  To use different variant calller, such as freebayes or clair3, use the --caller argument::
 
-    ngs-pl run-g6pd-discovery-variant-caller --snakefile discovery_clair3_varcall_lr.smk -o my_output my_data/*.fastq.gz
+    ngs-pl run-g6pd-discovery-variant-caller --caller freebayes -o my_output my_data/*.fastq.gz
 
 * To increase the number of parallel processes of the analysis, use -j option, eg in a properly setup HPC system::
 
