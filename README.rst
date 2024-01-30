@@ -2,6 +2,7 @@ G6PD Amplicon Sequencing Pipeline
 =================================
 
 This is ONT-based amplicon sequencing pipeline for detecting and diagnosing of human G6PD variants.
+The pipeline leverages on `vivaxGEN ngs-pipeline <https://github.com/vivaxgen/ngs-pipeline>`_ to provide most of its functionality. 
 
 
 Quick Installation
