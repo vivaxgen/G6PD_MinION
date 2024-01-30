@@ -26,7 +26,7 @@ def init_argparser():
 def main(args):
 
     NGSENV_BASEDIR = pathlib.Path(check_NGSENV_BASEDIR())
-    smk_basepath = NGSENV_BASEDIR / 'g6pd_pipeline' / 'smk'
+    smk_basepath = NGSENV_BASEDIR / 'g6pd_pipeline' / 'rules'
 
     if args.caller:
         args.snakefile = snakefiles[args.caller]
