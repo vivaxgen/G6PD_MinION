@@ -12,6 +12,7 @@ def init_argparser():
 
 def main(args):
 
+    # NGSENV_BASEDIR is the base directory of the current pipeline (G6PD)
     NGSENV_BASEDIR = pathlib.Path(check_NGSENV_BASEDIR())
     smk_basepath = NGSENV_BASEDIR / 'g6pd_pipeline' / 'rules'
 
