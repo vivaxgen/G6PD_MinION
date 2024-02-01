@@ -4,9 +4,10 @@
 # get the vivaxGEN ngs-pipeline base directory
 NGS_PIPELINE_BASE = config['NGS_PIPELINE_BASE']
 
-# include the panel_varcall_lr.smk from vivaxGEN ngs-pipeline
-include: f"{NGS_PIPELINE_BASE}/smk/utilities.smk"
-include: f"{NGS_PIPELINE_BASE}/smk/general_params.smk"
+# include utilites.smk and general_params.smk from vivaxGEN ngs-pipeline
+include: f"{NGS_PIPELINE_BASE}/rules/utilities.smk"
+include: f"{NGS_PIPELINE_BASE}/rules/general_params.smk"
+
 
 rule all:
     input:
