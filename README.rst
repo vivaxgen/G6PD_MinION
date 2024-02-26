@@ -28,8 +28,8 @@ Quick Start
   Note that the sample file names (without the extension) would be taken as sample code, eg. my-sample-1.fastq.gz would yield to sample code of my-sample-1. Symbolic links are also fine.
 
 * To run the panel variant calling, which will check only known variants as
-  listed in the this
-  `file <https://github.com/vivaxgen/G6PD_MinION/blob/main/refs/g6pd-variant-info.tsv>`_,
+  listed in 
+  `g6pd-variant-info.tsv <https://github.com/vivaxgen/G6PD_MinION/blob/main/refs/g6pd-variant-info.tsv>`_,
   execute the following command (assuming the compressed FASTQ files are under
   my_data directory and the output be written to my_output directory)::
 
