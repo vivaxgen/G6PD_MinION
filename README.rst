@@ -40,8 +40,8 @@ Quick Start
   The following symbols are used to indicate the mutation of each variant:
 
   ===== =====================================================================
-   -    No mutation, the allele in this position is still the same as reference
-   +    Mutation, the allele in this position is the alternate base
+   \-   No mutation, the allele in this position is still the same as reference
+   \+   Mutation, the allele in this position is the alternate base
    -/+  Heterozygote mutation, both reference and alternate allele is at this position
    ?    No known state of mutation, either because low quality position or no reads were mapped
   ===== =====================================================================
