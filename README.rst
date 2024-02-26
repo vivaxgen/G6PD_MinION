@@ -35,8 +35,16 @@ Quick Start
 
     ngs-pl run-g6pd-panel-variant-caller -o my_output my_data/*.fastq.gz
 
-  The list of mutation of each sample is written in merged_report.tsv file
+  The list of variant of each sample is written in merged_report.tsv file
   (as well as merged_report.xlsx) in the output directory.
+  The following symbols are used to indicate the mutation of each variant:
+
+  ===== =====================================================================
+   -    No mutation, the allele in this position is still the same as reference
+   +    Mutation, the allele in this position is the alternate base
+   -/+  Heterozygote mutation, both reference and alternate allele is at this position
+   ?    No known state of mutation, either because low quality position or no reads were mapped
+  ===== =====================================================================
 
 * To run the discovery variant calling, execute the following command::
 
