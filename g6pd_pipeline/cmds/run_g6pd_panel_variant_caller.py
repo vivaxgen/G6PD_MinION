@@ -12,10 +12,11 @@ def init_argparser():
 
 
 def main(args):
-    # we will execute targeted variant caller with panel_varcall_lr.smk from vivaxGEN ngs-pipeline
+    # we will execute targeted variant caller with msf_panel_varcall_lr.smk from vivaxGEN ngs-pipeline
     # see the source here:
-    # :https://github.com/vivaxgen/ngs-pipeline/blob/main/rules/panel_varcall_lr.smk
-    args.snakefile = 'panel_varcall_lr.smk'
+    # https://github.com/vivaxgen/ngs-pipeline/blob/main/rules/msf_panel_varcall_lr.smk
+    # note: the snakefile is the modular version of panel_varcall_lr.smk
+    args.snakefile = 'msf_panel_varcall_lr.smk'
 
     # set the target to merged_report
     args.target = 'merged_report'
