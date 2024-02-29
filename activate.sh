@@ -7,7 +7,7 @@ export VARCALL_SMK=var_call_ont.smk
 export JOINTCALL_SMK=jointvarcall_freebayes.smk
 
 PROMPT=ONT-G6PD
-NGS_PIPELINE_BASH_SOURCE=${VVG_BASEDIR}/env/ngs-pipeline/bin/activate.sh
+#NGS_PIPELINE_BASH_SOURCE=${VVG_BASEDIR}/env/ngs-pipeline/bin/activate.sh
 
 # only edit the following lines if you do know what you are doing
 
@@ -22,7 +22,7 @@ export NGSENV_BASEDIR=${_mydir}
 # snakemake can handle sbatch
 # export JOBCMD="sbatch --cpus-per-task={threads} --job-name=smk-{rule} --output=${NGSENV_BASEDIR}/slurm-logs/j-%j.out"
 
-. ${NGS_PIPELINE_BASH_SOURCE}
+#. ${NGS_PIPELINE_BASH_SOURCE}
 PATH=${NGSENV_BASEDIR}/bin:${PATH}
 PYTHONPATH=${NGSENV_BASEDIR}:${PYTHONPATH}
 export NGS_PIPELINE_CMD_MODS=g6pd_pipeline.cmds:${NGS_PIPELINE_CMD_MODS}
