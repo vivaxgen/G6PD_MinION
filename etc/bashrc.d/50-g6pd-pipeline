@@ -1,0 +1,17 @@
+
+# we assume that vivaxGEN NGS-Pipeline has been activated
+
+export VARCALL_SMK=var_call_ont.smk
+export JOINTCALL_SMK=jointvarcall_freebayes.smk
+
+# only edit the following lines if you do know what you are doing
+
+_script="$(readlink -f ${BASH_SOURCE[0]})"
+
+## Delete last component from $_script ##
+_mydir="$(dirname $_script)"
+
+export NGSENV_BASEDIR="$(dirname $_mydir)"
+export PYTHONPATH=${NGSENV_BASEDIR}:${PYTHONPATH}
+export NGS_PIPELINE_CMD_MODS=g6pd_pipeline.cmds:${NGS_PIPELINE_CMD_MODS}
+
