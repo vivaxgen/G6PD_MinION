@@ -8,10 +8,12 @@ export JOINTCALL_SMK=jointvarcall_freebayes.smk
 
 _script="$(readlink -f ${BASH_SOURCE[0]})"
 
-## Delete last component from $_script ##
+# Delete last component from $_script
 _mydir="$(dirname $_script)"
 
-export NGSENV_BASEDIR="$(dirname $_mydir)"
+export NGSENV_BASEDIR="$(dirname $(dirname $_mydir))"
 export PYTHONPATH=${NGSENV_BASEDIR}:${PYTHONPATH}
 export NGS_PIPELINE_CMD_MODS=g6pd_pipeline.cmds:${NGS_PIPELINE_CMD_MODS}
+
+# EOF
 
