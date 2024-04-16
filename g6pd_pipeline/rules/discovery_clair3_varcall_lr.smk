@@ -8,7 +8,7 @@
 NGS_PIPELINE_BASE = config['NGS_PIPELINE_BASE']
 
 # include the panel_varcall_lr.smk from vivaxGEN ngs-pipeline
-include: f"{NGS_PIPELINE_BASE}/smk/panel_varcall_lr.smk"
+include: f"{NGS_PIPELINE_BASE}/rules/panel_varcall_lr.smk"
 
 # the following parameters have been defined by panel_varcall_lr.smk above:
 # refmap - minimap2 mmi map file
@@ -54,8 +54,8 @@ rule final:
 
 
 #variant calling
-apptainer_dir = os.environ['APPTAINER_BASEDIR']
-model_name = 'dna_r9.4.1_450bps_sup.cfg'
+apptainer_dir = f"{pathlib.Path(NGS_PIPELINE_BASE).parent.parent}/opt/apptainer"
+model_name = 'r941_prom_sup_g5014'
 
 rule clair3:
     threads: 8
@@ -67,14 +67,18 @@ rule clair3:
     log:
         log1 = "{pfx}/{sample}/logs/clair3.log",
     params:
-        input_dir = lambda w, input: pathlib.Path(input.bam).parent.as_posix(),
-        output_dir = lambda w, output: pathlib.Path(output.vcf).parent.as_posix(),
+        sample = "{sample}",
+        input_dir = lambda w, input: pathlib.Path(input.bam).parent.resolve().as_posix(),
+        output_dir = lambda w, output: pathlib.Path(output.vcf).parent.resolve().as_posix(),
         ref_dir = lambda w: pathlib.Path(ngsenv_basedir).parent.as_posix()
     shell:
-        'apptainer exec -B {params.input_dir},{params.ref_dir},{params.output_dir} {apptainer_dir}/clair3_latest.sif'
-        ' /opt/bin/run_clair3.sh --bam_fn={input.bam} --ref_fn={params.ref_dir}/'
-        ' --threads={threads} --platform=ont --model_path={params.ref_dir}/{model_name}'
-        ' --output={params.output_dir}'
+        'mkdir -p {params.output_dir} && '
+        'echo {params.sample} > {params.output_dir}/sample_id.txt && '
+        'apptainer exec -B {params.input_dir},{params.ref_dir},{params.output_dir} {apptainer_dir}/clair3.sif'
+        ' /opt/bin/run_clair3.sh --bam_fn={params.input_dir}/sorted.bam --ref_fn={refseq}'
+        ' --threads={threads} --platform=ont --model_path=/opt/models/{model_name}'
+        ' --output={params.output_dir} &&'
+        'bcftools reheader -s {params.output_dir}/sample_id.txt -o {output} {params.output_dir}/merge_output.vcf.gz'
 
 
 #combine raw vcfs

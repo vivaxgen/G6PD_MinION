@@ -8,7 +8,7 @@
 NGS_PIPELINE_BASE = config['NGS_PIPELINE_BASE']
 
 # include the panel_varcall_lr.smk from vivaxGEN ngs-pipeline
-include: f"{NGS_PIPELINE_BASE}/smk/panel_varcall_lr.smk"
+include: f"{NGS_PIPELINE_BASE}/rules/panel_varcall_lr.smk"
 
 # the following parameters have been defined by panel_varcall_lr.smk above:
 # refmap - minimap2 mmi map file
