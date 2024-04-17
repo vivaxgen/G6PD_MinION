@@ -10,7 +10,7 @@ Quick Installation
 
 To install the pipeline and all of its dependencies (including reference sequence), run the following command from your terminal/shell::
 
-    "${SHELL}" <(curl -L https://raw.githubusercontent.com/vivaxgen/install/main/G6PD-pl.sh)
+    "${SHELL}" <(curl -L https://raw.githubusercontent.com/vivaxgen/G6PD_MinION/main/install.sh)
 
 Make sure that the installation completes sucessfully.
 Take a note of the activation script once the installation process finished.
