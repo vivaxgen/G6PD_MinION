@@ -108,8 +108,13 @@ rule combinevcf:
         vcf_c = f"{outdir}/all.mpileup.raw.vcf.gz"
     log:
         "logs/bcftools-merge.log"
-    shell:
-        "bcftools merge -o {output.vcf_c} {input.vcfs} 2> {log}"
+    run:
+        if len(input.vcfs) == 1:
+            shell("ln -P {input.vcfs[0]} {output.vcf_c}")
+        else:
+            vcfs_to_join = " ".join(input.vcfs)
+            shell("bcftools merge -o {output.vcf_c} {vcfs_to_join} 2> {log}")
+
 
 
 #filter vcf for quality
