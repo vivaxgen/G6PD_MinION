@@ -34,14 +34,14 @@ BASEDIR="${BASEDIR:-./ont-g6pd-pipeline}"
 
 uMAMBA_ENVNAME='ONT-G6PD'
 OMIT='GATK4'
-source <(curl -L https://raw.githubusercontent.com/vivaxgen/install/main/ngs-pl.sh)
+source <(curl -L https://raw.githubusercontent.com/vivaxgen/ngs-pipeline/main/install.sh)
 
 echo Installing apptainer
 micromamba -y install apptainer -c conda-forge -c bioconda
 micromamba -y install squashfuse -c conda-forge
 
 echo "Cloning G6PD pipeline"
-git clone https://github.com/vivaxgen/G6PD_MinION.git ${ENVS_DIR}/G6PD-pipeline
+git clone -b test_clair3_custom_model https://github.com/vivaxgen/G6PD_MinION.git ${ENVS_DIR}/G6PD-pipeline
 
 git clone https://github.com/nanoporetech/rerio.git ${ENVS_DIR}/rerio
 ln -sr ${ENVS_DIR}/rerio ${BASEDIR}/opt/rerio
