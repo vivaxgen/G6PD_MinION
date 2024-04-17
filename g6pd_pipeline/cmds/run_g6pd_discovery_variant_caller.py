@@ -15,6 +15,9 @@ available_clair3_models = [
     a[:-1] for a in glob("*/",
                         root_dir = pathlib.Path(os.environ['NGSENV_BASEDIR']).parent.parent.joinpath("opt/clair3_models")
                         )]
+default_models = ['r941_prom_hac_g238', 'r941_prom_sup_g5014', 'r941_prom_hac_g360+g422',
+                 'hifi_revio', 'ilmn','hifi_sequel2']
+available_clair3_models.extend(default_models)
 
 def init_argparser():
     p = run_targeted_variant_caller.init_argparser()
@@ -32,8 +35,7 @@ def init_argparser():
     return p
 
 def get_clair3_path(model):
-    if model in ['r941_prom_hac_g238', 'r941_prom_sup_g5014', 'r941_prom_hac_g360+g422',
-                 'hifi_revio', 'ilmn','hifi_sequel2']:
+    if model in default_models:
         # Model already in apptainer
         return '/opt/models'
     else:
