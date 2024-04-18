@@ -18,7 +18,7 @@ DORADO_DIR = 'dorado_models'
 
 def main():
 
-    rootdir = os.path.dirname(os.path.realpath(__file__))
+    rootdir = os.path.dirname(__file__)
     modeldir = os.path.join(
         rootdir,
         CLAIR3_DIR
@@ -41,9 +41,10 @@ def main():
             sys.stderr.write(
                 'Skipping invalid stub file: {}\n'.format(stub_fn))
             continue
-        
+
         # Check if model has already been downloaded and extracted
-        if os.path.exists(os.path.dirname(stub_fn)):
+        extracted_path = os.path.dirname(stub_fn).replace("_model", "")
+        if os.path.exists(extracted_path):
             continue
         model_urls.append((stub_lines[0].strip(), stub_fn))
 
