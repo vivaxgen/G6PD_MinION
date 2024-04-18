@@ -43,7 +43,7 @@ def main():
             continue
 
         # Check if model has already been downloaded and extracted
-        extracted_path = os.path.dirname(stub_fn).replace("_model", "")
+        extracted_path = stub_fn[:-6]
         if os.path.exists(extracted_path):
             continue
         model_urls.append((stub_lines[0].strip(), stub_fn))
