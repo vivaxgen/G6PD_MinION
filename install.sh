@@ -43,6 +43,8 @@ micromamba -y install squashfuse -c conda-forge
 echo "Cloning G6PD pipeline"
 git clone https://github.com/vivaxgen/G6PD_MinION.git ${ENVS_DIR}/G6PD-pipeline
 
+ln -s ${ENVS_DIR}/G6PD-pipeline/bin/update-pipeline.sh ${BASEDIR}/bin/update-pipeline.sh
+
 git clone https://github.com/nanoporetech/rerio.git ${ENVS_DIR}/rerio
 ln -sr ${ENVS_DIR}/rerio ${BASEDIR}/opt/rerio
 ln -sr ${ENVS_DIR}/rerio/clair3_models ${BASEDIR}/opt/clair3_models
