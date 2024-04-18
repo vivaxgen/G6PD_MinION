@@ -2,4 +2,4 @@
 
 $VVGBIN/update-pipeline.sh
 
-python ${VVG_BASEDIR}/opt/rerio/download_model.py --clair3
+python ${VVG_BASEDIR}/opt/rerio/check_n_download_model.py
