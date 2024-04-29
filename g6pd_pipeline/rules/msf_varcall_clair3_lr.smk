@@ -9,7 +9,7 @@ model_path = config.get('model_path', '/opt/models')
 model_name = config.get('model_name', 'r941_prom_sup_g5014')
 
 rule clair3_out_gvcf:
-    threads: 8
+    threads: 4
     input:
         bam = "{pfx}/{sample}/maps/sorted.bam",
         idx = "{pfx}/{sample}/maps/sorted.bam.bai"
@@ -18,8 +18,8 @@ rule clair3_out_gvcf:
         input_dir = lambda w, input: pathlib.Path(input.bam).parent.resolve().as_posix(),
         output_dir = lambda w, output: pathlib.Path(output[0]).parent.resolve().as_posix(),
         ref_dir = lambda w: pathlib.Path(ngsenv_basedir).parent.as_posix(),
-        clair3_extra_flags = config.get('clair3_extra_flags', '' +
-            f'--bed_fn={pathlib.Path(target_variants).resolve().as_posix()}' if target_variants else ''),
+        clair3_extra_flags = config.get('clair3_extra_flags', '') +
+            f' --bed_fn={pathlib.Path(target_variants).resolve().as_posix()}' if target_variants else '',
     shell:
         'mkdir -p {params.output_dir} && '
         'echo {wildcards.sample} > {params.output_dir}/sample_id.txt && '
