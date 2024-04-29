@@ -42,7 +42,7 @@ def get_clair3_path(model):
         external_model_path = '/opt/clair3_models'
 
     return external_model_path
-    
+
 
 def main(args):
 

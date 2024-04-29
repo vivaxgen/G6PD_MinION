@@ -50,7 +50,7 @@ rule final:
         *[f"{outdir}/{sample}/vcfs/{sample}.clair3.raw.vcf.gz" for sample in IDs],
         f"{outdir}/all.filtered.clair3.vcf.gz",
         #f"{out_dir}/all_f_posf.vcf",
-        #f"{out_dir}/all_final.vcf",
+        f"{outdir}/all_final.vcf",
 
 
 #variant calling
@@ -71,13 +71,14 @@ rule clair3:
     params:
         input_dir = lambda w, input: pathlib.Path(input.bam).parent.resolve().as_posix(),
         output_dir = lambda w, output: pathlib.Path(output.vcf).parent.resolve().as_posix(),
-        ref_dir = lambda w: pathlib.Path(ngsenv_basedir).parent.as_posix()
+        ref_dir = lambda w: pathlib.Path(ngsenv_basedir).parent.as_posix(),
+        extra_flags = config.get('clair3_extra_flags', '')
     shell:
         'mkdir -p {params.output_dir} && '
         'echo {wildcards.sample} > {params.output_dir}/sample_id.txt && '
         'apptainer exec -B {params.input_dir},{params.ref_dir},{params.output_dir},{clair3_model_exdir}:/opt/clair3_models {apptainer_dir}/clair3.sif'
         ' /opt/bin/run_clair3.sh --bam_fn={params.input_dir}/sorted.bam --ref_fn={refseq}'
-        ' --threads={threads} --platform=ont --model_path={model_path}/{model_name}'
+        ' --threads={threads} --platform=ont --model_path={model_path}/{model_name} {params.extra_flags} '
         ' --output={params.output_dir} &&'
         'bcftools reheader -s {params.output_dir}/sample_id.txt -o {output} {params.output_dir}/merge_output.vcf.gz'
 
@@ -132,11 +133,11 @@ rule vcffilter:
 
 rule annotate:
     input:
-        vcf_p = f"{outdir}/all_f_posf.vcf"
+        vcf_p = f"{outdir}/all.filtered.clair3.vcf.gz"
     output:
         vcf_final = f"{outdir}/all_final.vcf"
     shell:
-        "snpEff GRCh38.p14 {input.vcf_p} > {output.vcf_final}"
+        "snpEff -Xmx8G GRCh38.p14 {input.vcf_p} > {output.vcf_final}"
 
 
 # utilities
