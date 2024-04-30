@@ -5,7 +5,7 @@ max_read_len: 10000
 headcrop: 40
 tailcrop: 40
 mindepth: 20
-min_variant_qual: 30
+min_variant_qual: 10
 
 # to satisfy global_params.smk
 read_length: -1
@@ -23,6 +23,12 @@ variant_info: refs/g6pd-variant-info.tsv
 
 regions:
   - X
+
+# for amplicon sequencing
+deduplicate: False
+
+# for clair3
+clair3_extra_flags: --print_ref_calls --base_err=0.05
 
 # adjust this for het call assignment
 freebayes_extra_flags: --min-alternate-count 5 --min-alternate-fraction 0.25

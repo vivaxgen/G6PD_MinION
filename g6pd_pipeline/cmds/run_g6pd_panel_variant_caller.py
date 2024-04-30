@@ -54,7 +54,7 @@ def main(args):
     args.snakefile = 'msf_panel_varcall_lr.smk'
 
     # set the target to merged_report
-    args.target = 'merged_report' #'all' #  
+    args.target = ['merged_report', 'all'] #  
 
     # allow for running outside pipeline base enviroment directory
     args.no_config_cascade = True
