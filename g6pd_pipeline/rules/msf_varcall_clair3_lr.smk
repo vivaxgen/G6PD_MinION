@@ -26,15 +26,21 @@ rule clair3_out_gvcf:
         'apptainer exec -B {params.input_dir},{params.ref_dir},{params.output_dir},{clair3_model_exdir}:/opt/clair3_models {apptainer_dir}/clair3.sif'
         ' /opt/bin/run_clair3.sh --bam_fn={params.input_dir}/sorted.bam --ref_fn={refseq}'
         ' --threads={threads} --platform=ont --model_path={model_path}/{model_name} --gvcf {params.clair3_extra_flags} '
-        ' --output={params.output_dir} &&'
+        ' --output={params.output_dir} && '
         'bcftools reheader -s {params.output_dir}/sample_id.txt -o {output} {params.output_dir}/merge_output.gvcf.gz'
 
-rule norm_vcf:
-    output: "{pfx}/{sample}/vcfs/{sample}.norm.vcf.gz",
+
+rule gvcf_to_vcf:
+    output: "{pfx}/{sample}/vcfs/{sample}.g.vcf.gz",
     input: "{pfx}/{sample}/vcfs/{sample}.gvcf.gz",
     shell:
         "bcftools convert --gvcf2vcf -f {refseq} -o {output} {input} "
 
+rule normalise_vcf:
+    output: "{pfx}/{sample}/vcfs/{sample}.norm.vcf.gz",
+    input: "{pfx}/{sample}/vcfs/{sample}.g.vcf.gz",
+    shell:
+        "bcftools norm -a --atom-overlaps '*' --fasta-ref {refseq} -o {output} {input}"
 
 rule filter_vcf:
     input: 
