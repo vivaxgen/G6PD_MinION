@@ -35,6 +35,8 @@ def init_argparser():
                          'refer to: https://github.com/nanoporetech/rerio and'
                          'https://github.com/HKU-BAL/Clair3')
     )
+    p.add_argument("--flag_failed_variant", action="store_true", default=False,
+                   help="Output all variant, including those with depth < mindepth marked with (*) and qual < minqual marked with (^)")
     return p
 
 def get_clair3_path(model):
@@ -67,6 +69,10 @@ def main(args):
             optional_config["model_path"] = get_clair3_path(args.clair_model)
             optional_config["model_name"] = args.clair_model
             optional_config["generate_variant_report_extra_flags"] = "--clair3_gvcf"
+    if args.flag_failed_variant:
+        if "generate_variant_report_extra_flags" in optional_config:
+            optional_config["generate_variant_report_extra_flags"] += " --flag_failed_variant"
+        optional_config["generate_variant_report_extra_flags"] = "--flag_failed_variant"
 
     run_targeted_variant_caller.run_targeted_variant_caller(args, optional_config)
 

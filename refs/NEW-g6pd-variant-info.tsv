@@ -1,0 +1,204 @@
+CHROM	POS	Change	Name	cDNA	AA_Change	gDNA	Exon	Class	Origin	Reference	Remark
+X	154546149	C>T	Vietnam 1	7G>A	Glu>Lys	7	2	NR	Vietnam	3	
+X	154546131	G>A	No name	25C>T	Arg>Trp	25	2	NR	Singapore	4	
+X	154546122	C>A	Ninnai	34G>T	Val>Leu	34	2	III	Italy	5	
+X	154546116	C>T	Lages	40G>A	Gly>Arg	40	2	III	South America	6	
+X	154546062	G>C	No name	94C>G	His>Asp	94	2	II	Myanmar	7	
+X	154546061	T>C	Gaohe	95A>G	His>Arg	95	2	III	China	8	
+X	154546046	A>G	Gidra	110T>C	Met>Thr	110	2	NR	China	9	
+X	154536169	C>T	Rignano	130G>A	Ala>Thr	9986	3	III	Italy	10	
+X	154536168	G>C	Orissa	131C>G	Ala>Gly	9987	3	III	"India, Italy"	"11,12"	
+X	154536156	A>G	Aures	143T>C	Ile>Thr	9999	3	III	"Algeria, Tunisia"	"13,14"	
+X	154536151	G>A	Kambos	148C>T	Pro>Ser	10004	3	III	Cyprus	15	
+X	154536045	C>G	Kozukata	159G>C	Trp>Cys	10110	4	I	China	16	
+X	154536035	G>A	Kamogawa	169C>T	Arg>Trp	10120	4	II	China	16	
+X	154536034	C>T	Palestrina	170G>A	Arg>Glu	10121	4	III	Italy	1	
+X	154536032	C>T	Metaponto	172G>A	Asp>Asn	10123	4	III	Italy	17	
+X	154536031	T>C	Ho Chi Minh	173A>G	Asp>Gly	10124	4	III	Vietnam (Kinh)	18	
+X	154536025	A>G	Costanzo	179T>C	Leu>Pro	10130	4	II	Italy	1	
+X	154536019	G>T	Amazonia	185C>A	Pro>His	10136	4	II	Brazil	19	
+X	154536019	G>A	Musashino	185C>T	Pro>Leu	10136	4	III	Japan	20	
+X	154536017	C>T	Pingtun	187G>A	Glu>Lys	10138	4	III/IV	Taiwan	21	
+X	154536011	T>C	Mexico DF	193A>G	Thr>Ala	10144	4	NR	Mexico	22	
+X	154536008	A>T	Songklanagarind	196T>A	Phe>Ile	10147	4	II	Thailand	23	
+X	154536007	A>T	Bahia	197T>A	Phe>Thr	10148	4	II	Brazil	24	
+X	154536007	A>C	Vietnam 2	197T>G	Phe>Cys	10148	4	NR	Vietnam	3	
+X	154536002	C>T	Asahi	202G>A	Val>Met	10153	4	III	China	25	
+X	154535996	A>G	Namoru	208T>C	Tyr>His	10159	4	II	Vanuatu Archipelago	26	
+X	154535995	T>C	Murcia Oristano	209A>G	Tyr>Cys	10160	4	III	"Spain, Italy"	"12,27"	
+X	154535980	A>G	Swansea	224T>C	Leu>Pro	10175	4	I	"Wales, GB"	28	
+X	154535963	G>A	Ube Konan	241C>T	Arg>Cys	10192	4	III	"Japan, Italy"	"12,29"	
+X	154535962	C>T	Lagosanto	242G>A	Arg>His	10193	4	III	Italy	30	
+X	154535379	G>A	Guangzhou	274C>T	Pro>Ser	10774	5	III	China	31	
+X	154535330	A>T	Hammersmith	323T>A	Val>Glu	10823	5	III	"GB, Mauritius"	"32,33"	
+X	154535316	C>T	Sao Borja	337G>A	Asp>Asn	10837	5	IV	Brazil	34	
+X	154535301	A>G	Bao Loc	352T>C	Tyr>His	10852	5	II	Vietnam	35	
+X	154535282	T>C	No name	371A>G	His>Arg	10871	5	NR	China	36	
+X	154535277	T>C	A	376A>G	Asn>Asp	10876	5	IV	Africa Mediterranean	37	
+X	154535277	T>A	San Luis Potosi	376A>T	Asn>Tyr	10876	5	II	Mexico	38	
+X	154535270	A>C	"Salerno, Pyrgos"	383T>G	Leu>Arg	10883	5	III	"Italy, Greek"	"39,40"	
+X	154535270	A>G	Vanua Lava	383T>C	Leu>Pro	10883	5	II	Southwestern Pacific	20	
+X	154535261	C>A	"Quing Yan, Chinese-4"	392G>T	Gly>Val	10892	5	III	China	41	
+X	154535249	T>G	Cairo	404A>C	Asn>Thr	10904	5	II	Egypt	42	
+X	154535249	T>C	No name	404A>G	Asn>Ser	10904	5	NR	Italy	43	
+X	154535247	G>A	Valladolid	406C>T	Arg>Cys	10906	5	II	Spain	44	
+X	154535244	G>A	Belem	409C>T	Leu>Phe	10909	5	II	Brazil	45	
+X	154535211	C>T	Liuzhou	442G>A	Glu>Lys	10942	5	II	China	46	
+X	154535208	C>T	Jimma	445G>A	Ala>Thr	10945	5	NR	Ethiopia (Jimma)	47	
+X	154535190	G>C	Acrokorinthos	463C>G	His>Asp	10963	5	NR	Cyprus	15	
+X	154535187	C>T	Ilesha	466G>A	Glu>Lys	10966	5	III	Africa	48	
+X	154535180	C>T	Shenzen	473G>A	Cys>Tyr	10973	5	II	China	49	
+X	154535176	C>G	Gond	477G>C	Met>Ile	10977	5	NR	India	50	
+X	154534495	C>T	Mahidol	487G>A	Gly>Ser	11658	6	II	South East Asia	"51,52"	
+X	154534494	C>T	Plymouth	488G>A	Gly>Asp	11659	6	I	GB	27	
+X	154534489	T>C	Taipei “Chinese-3”	493A>G	Asn>Asp	11664	6	II	China	53	
+X	154534486	G>A	Toledo	496C>T	Arg>Cys	11667	6	II	France	54	
+X	154534485	C>T	Naone	497G>A	Arg>His	11668	6	II	Southwestern Pacific	25	
+X	154534468	G>A	Volendam	514C>T	Pro>Ser	11685	6	I	Holland	55	
+X	154534465	A>G	Nankang	517T>C	Phe>Leu	11688	6	II	"China, Malaysia"	"56,57"	
+X	154534463	G>C	Miagoli	519C>G	Phe>Leu	11690	6	II	China	58	
+X	154534455	T>C	Shinshu	527A>G	Asp>Gly	11698	6	I	Japan	59	
+X	154534447	T>A	Chikugo	535A>T	Ser>Cys	11706	6	I	Japan	60	
+X	154534446	C>T	Gaza	536G>A	Ser>Asn	11707	6	NR	Palestine	61	
+X	154534440	T>A	Malaga	542A>T	Asp>Val	11713	6	III	Spain	62	
+X	154534431	G>A	Dindori	551C>T	Ser>Phe	11722	6	II	Central India (Gond Tribe)	63	
+X	154534419	G>A	"Mediterranean, Dallas, “Sassari”"	563C>T	Ser>Phe	11734	6	II	Mediterranean	64	
+X	154534409	G>C	Pedoplis-Ckaro	573C>G	Phe>Leu	11744	6	I	Georgia	65	
+X	154534400	G>C	No name	582C>G	Asp>Glu	11753	6	NR		66	
+X	154534397	C>G	Tainan	585G>C	Gln>His	11756	6	NR	Taiwan	21	
+X	154534396	T>A	Changhua	586A>T	Ile>Phe	11757	6	NR	Taiwan	21	
+X	154534390	G>A	"Coimbra, Shunde"	592C>T	Arg>Cys	11763	6	II	"India, Portugal Malaysa"	"67,68"	
+X	154534390	G>T	Herlev	592C>A	Arg>Ser	11763	6	I/II	Denmark	69	
+X	154534389	C>T	Nilgiri	593G>A	Arg>His	11764	6	II	India	70	
+X	154534389	C>G	Santiago	593G>C	Arg>Pro	11764	6	I	Chile	71	
+X	154534387	T>C	"Açores, Dagua"	595A>G	Ile>Val	11766	6	NR	"New Guinea, Azores"	"72,73"	
+X	154534348	T>C	Sibari	634A>G	Met>Val	11805	6	III	Italy	74	
+X	154534345	C>A	"Minnesota, Marion, Gastonia"	637G>T	Val>Leu	11808	6	I	USA	"75,76"	
+X	154534157	A>C	Harilaou	648T>G	Phe>Leu	11996	7	I	Greek	77	
+X	154534150	T>C	Meyer	655A>G	Arg>Gly	12003	7	I	Italy (Tuscany)	78	
+X	154534145	G>C	San Paulo	660C>G	Ile>Met	12008	7	IV	Brazil	79	
+X	154534126	G>A	Radlowo	679C>T	Arg>Trp	12027	7	II	Poland	80	
+X	154534125	C>T	Mexico City	680G>A	Arg>Gln	12028	7	III	Mexico	71	
+X	154534123	C>T	No name	682G>A	Asp>Asn	12030	7	NR	China	81	
+X	154534114	C>G	Shanghai	691G>C	Ala>Pro	12039	7	NR	Chinese	82	
+X	154534110	C>T	Asahikawa	695G>A	Cys>Tyr	12043	7	I	Japan	83	
+X	154534102	G>A	Nanning	703C>T	Leu>Phe	12051	7	III	China	46	
+X	154534092	T>C	Durham	713A>G	Lys>Arg	12061	7	I	USA	84	
+X	154534068	C>A	Tunisia	737T>C	Arg>Leu	12085	7	III	Tunisia	85	"Looked at original paper: https://www.sciencedirect.com/science/article/pii/S0369811412000417?via=ihub, differ from the variant mentioned in paper, should be (NM_001360016.2:c.737G>T)"
+X	154534062	C>T	Chiayi	743G>A	Gly>Asp	12091	7	NR	Taiwan	21	
+X	154534036	G>C	Wayne	769C>G	Arg>Gly	12117	7	I	USA	86	
+X	154534035	C>A	Zacatecas	770G>T	Arg>Leu	12118	7	I	Mexico	38	
+X	154533634	C>T	Aveiro	806G>A	Cys>Tyr	12519	8	I	Portugal	87	
+X	154533629	C>G	Roubaix	811G>C	Val>Leu	12524	8	II	France	54	
+X	154533620	C>T	"Cleveland, Corum"	820G>A	Glu>Lys	12533	8	I	"USA, Turkey"	"27,88"	
+X	154533619	T>A	Lille	821A>T	Glu>Val	12534	8	I	France	54	
+X	154533615	C>G	Bangkok	825G>C	Lys>Asn	12538	8	I	China	89	
+X	154533614	G>A	Sugao	826C>T	Pro>Ser	12539	8	I	Japan	90	
+X	154533613	G>A	Hamburg	827C>T	Pro>Leu	12540	8	I	Germany	91	
+X	154533608	A>G	La Jolla	832T>C	Ser>Pro	12545	8	I	USA	92	
+X	154533607	G>A	Wexham	833C>T	Ser>Phe	12546	8	I	GB	27	
+X	154533605	T>A	Chinese-1	835A>T	Thr>Ser	12548	8	II	China	93	
+X	154533605	T>C	Haikou	835A>G	Thr>Ala	12548	8	II	China	94	
+X	154533596	C>A	Bajo Maumere	844G>T	Asp>Tyr	12557	8	III	Japan (Indonesia)	95	
+X	154533596	C>G	"Seattle, Lodi, Modena"	844G>C	Asp>His	12557	8	III	"USA, Italy"	96-98	
+X	154533592	T>C	Mizushima	848A>G	Asp>Gly	12561	8	II	Japan	99	
+X	154533591	G>T	Papua	849C>A	Asp>Glu	12562	8	NR	New Guinea	100	
+X	154533589	A>G	Piotrkow	851T>C	Val>Ala	12564	8	I	Poland	65	
+X	154533587	G>A	Osaka	853C>T	Arg>Cys	12566	8	II	Japan	101	
+X	154533586	C>T	Montalbano	854G>A	Arg>His	12567	8	III	Italy	102	
+X	154533122	C>T	"Viangchan, Jammu"	871G>A	Val>Met	13031	9	II	China	"76,103"	
+X	154533083	C>A	West Virginia	910G>T	Val>Phe	13070	9	I	USA	88	
+X	154533077	C>T	Seoul	916G>A	Gly>Ser	13076	9	II	China	60	
+X	154533073	T>G	Tunis	920A>C	Gln>Pro	13080	9	II	Tunisia	104	
+X	154533072	C>G	Omiya	921G>C	Gln>His	13081	9	I	NR	105	
+X	154533064	C>T	Ludhiana	929G>A	Gly>Glu	13089	9	II	India	106	
+X	154533044	C>T	"Kalyan-Kerala, Jamnaga, Rohini"	949G>A	Glu>Lys	13109	9	III	India	"107,108"	
+X	154533031	C>T	Manhattan	962G>A	Gly>Glu	13122	9	I	USA	109	
+X	154533031	C>A	Bhavnagar	962G>T	Gly>Val	13122	9	I	India	110	
+X	154533029	A>G	Rehevot	964T>C	Tyr>His	13124	9	I	Africa	111	
+X	154533025	A>G	Nefza	968T>C	Leu>Pro	13128	9	III	Tunisia	104	
+X	154533020	C>T	Karachi	973G>A	Asp>Asn	13133	9	NR	Pakistan	112	
+X	154533016	G>T	Farroupilha	977C>A	Pro>His	13137	9	II/III	South America	5	
+X	154533004	C>T	Insulti	989G>A	Arg>His	13149	9	IV	India	113	
+X	154532998	G>A	Quilmes	995C>T	Ser>Phe	13155	9	I	Argentine	114	
+X	154532990	C>T	Chatham	1003G>A	Ala>Thr	13163	9	II	"Italy, Asia, Africa"	64	
+X	154532989	G>T	Fushan	1004C>A	Ala>Asp	13164	9	II	China	88	
+X	154532987	T>C	Torun	1006A>G	Thr>Ala	13166	9	I	Polish	80	
+X	154532969	G>A	Chinese-5	1024C>T	Leu>Phe	13184	9	III	China	41	
+X	154532945	C>G	Mira d'Aire	1048G>C	Asp>His	13208	9	IV	Portugal	115	
+X	154532802	C>A	Partenope	1052G>T	Gly>Val	13351	10	II	Italy	116	
+X	154532797	G>A	Ierapetra	1057C>T	Pro>Ser	13356	10	II	Greece	71	
+X	154532787	A>T	No name	1067T>A	Leu>Gln	13366	10	I	Pakistan	117	
+X	154532773	C>T	Iwatsuki	1081G>A	Ala>Thr	13380	10	I	Japan	105	
+X	154532772	G>A	Serres	1082C>T	Ala>Val	13381	10	I	Greece	118	
+X	154532766	T>A	No name	1088A>T	Asn>Ile	13387	10	I	China	119	
+X	154532765	G>C	"Loma Linda, Aachen"	1089C>G	Asn>Lys	13388	10	I	Germany	"75,120"	
+X	154532760	C>T	Veracruz	1094G>A	Arg>His	13393	10	I	Mexico	38	
+X	154532758	T>C	Tenri	1096A>G	Lys>Glu	13395	10	I	Japan	121	
+X	154532722	C>T	Montpellier	1132G>A	Gly>Ser	13431	10	I	France	54	
+X	154532716	T>C	Calvo Mackenna	1138A>G	Ile>Val	13437	10	I	USA	122	
+X	154532715	A>G	Riley	1139T>C	Ile>Thr	13438	10	I	USA	122	
+X	154532713	A>G	Olomouc	1141T>C	Phe>Leu	13440	10	I	Czech Republic	122	
+X	154532713	A>T	New York	1141T>A	Phe>Ile	13440	10	NR	NR	123	
+X	154532701	A>G	Tomah	1153T>C	Cys>Arg	13452	10	I	"USA, Spain"	122	
+X	154532701	A>C	Kangnam	1153T>G	Cys>Gly	13452	10	I	Korea	124	
+X	154532700	C>A	Lynwood	1154G>T	Cys>Phe	13453	10	I	USA	109	
+X	154532699	G>C	Madrid	1155C>G	Cys>Trp	13454	10	I	Spain	44	
+X	154532698	T>C	"Iowa, Walter Reed, Springfield"	1156A>G	Lys>Glu	13455	10	I	"USA, GB"	125	
+X	154532695	G>A	Guadalajara	1159C>T	Arg>Cys	13458	10	I	"Mexico, USA, India, Japan"	126	
+X	154532694	C>T	"Beverly Hills, Genova, Iwate"	1160G>A	Arg>His	13459	10	I	"Italy, Usa, Japan"	"127,128"	
+X	154532692	T>C	Hartford	1162A>G	Asn>Asp	13461	10	I	USA	109	
+X	154532688	T>C	Praha	1166A>G	Glu>Gly	13465	10	I	Czech Republic	88	
+X	154532679	A>G	Krakow	1175T>C	Ile>Thr	13474	10	I	Poland	65	
+X	154532677	G>C	Wisconsin	1177C>G	Arg>Gly	13476	10	I	USA	122	
+X	154532676	C>T	"Nashville, Anaheim, Portici"	1178G>A	Arg>His	13477	10	I	"USA, Italy, Portugal"	"75,129"	
+X	154532674	C>G	Alhambra	1180G>C	Val>Leu	13479	10	I	"Sweden, Finland"	88	
+X	154532668	G>C	No name	1186C>G	Pro>Ala	13485	10	I	India	130	
+X	154532667	G>A	Bari	1187C>T	Pro>Leu	13486	10	I	Italy	131	
+X	154532667	G>C	No name	1187C>G	Pro>Arg	13486	10	I	Korea	132	
+X	154532662	C>T	Puerto Limon	1192G>A	Glu>Lys	13491	10	I	Costa Rica	133	
+X	154532661	T>C	Anadia	1193A>G	Glu>Gly	13492	10	II	Portugal	"73,134"	
+X	154532649	G>T	Covao do Lobo	1205C>A	Thr>Asn	13504	10	I	Portugal	135	
+X	154532639	C>T	Clinic	1215G>A	Met>Ile	13514	10	I	"Spain, France"	26	
+X	154532634	T>G	Abeno	1220A>C	Lys>Thr	13519	10	II	Japan	"101,134"	
+X	154532629	G>A	Utrecht	1225C>T	Pro>Ser	13524	10	I	Holland	136	
+X	154532628	G>C	Suwalki	1226C>G	Pro>Arg	13525	10	I	Poland	137	
+X	154532628	G>T	Merlo	1226C>A	Pro>Gln	13525	10	I	Argentine	114	
+X	154532626	C>A	Riverside	1228G>T	Gly>Cys	13527	10	I	Germany	125	
+X	154532625	C>T	"Japan, Shinagawa"	1229G>A	Gly>Asp	13528	10	I	"Japan, Israel"	"59,71"	
+X	154532625	C>G	Kawasaki	1229G>C	Gly>Ala	13528	10	I	Japan	9	
+X	154532623	T>C	Munich	1231A>G	Met>Val	13530	10	I	Germany	138	
+X	154532608	C>T	"Tokyo, Fukushima"	1246G>A	Glu>Lys	13545	10	I/II	Japan	"128,139"	
+X	154532569	T>C	Yucatan	1285A>G	Lys>Glu	13584	10	I	Mexico	38	
+X	154532459	C>T	Surabaya	1291G>A	Val>Met	13694	11	II	Indonesia	140	
+X	154532458	A>C	Sumare	1292T>G	Val>Gly	13695	11	I	Brazil	141	
+X	154532434	C>G	Pawnee	1316G>C	Arg>Pro	13719	11	II	USA	71	
+X	154532432	G>A	Telti/Kobe	1318C>T	Leu>Phe	13721	11	I	"Japan,"	142	
+X	154532420	C>T	Tainan-2	1330G>A	Val>Ile	13733	11	NR	Taiwan	21	
+X	154532411	C>T	"Santiago de Cuba, Morioka"	1339G>A	Gly>Arg	13742	11	I	Cuba	"64,128"	
+X	154532408	T>C	S. Antioco	1342A>G	Ser>Gly	13745	11	II	Italy	116	
+X	154532403	C>G	Cassano	1347G>C	Gln>His	13750	11	II	"Italy, Greece"	"74,143"	
+X	154532392	A>T	Harima	1358T>A	Val>Glu	13761	11	I	NR	105	
+X	154532390	G>A	"Union, Maewo, Chinese-2"	1360C>T	Arg>Cys	13763	11	II	"Italy, Spain, China, Japan"	"74,144,145"	
+X	154532389	C>T	Andalus	1361G>A	Arg>His	13764	11	II	Spain	146	
+X	154532279	C>G	Figuera da Foz	1366G>C	Asp>His	13874	12	I	Portugal	73	
+X	154532278	T>A	Amiens	1367A>T	Asp>Val	13875	12	I	France	54	
+X	154532269	C>A	"Canton, Taiwan-Hakka, Gifu-like"	1376G>T	Arg>Leu	13884	12	II	"Japan, Italy"	"147,148"	
+X	154532269	C>G	Cosenza	1376G>C	Arg>Pro	13884	12	II	Italy	74	
+X	154532265	C>G	Nice	1380G>C	Glu>Asp	13888	12	III	France	54	
+X	154532264	C>T	Yunan	1381G>A	Ala>Thr	13889	12	NR	China	149	
+X	154532258	G>T	Flores	1387C>A	Arg>Ser	13895	12	II	Portugal	150	
+X	154532258	G>A	"Kamiube, Keelung"	1387C>T	Arg>Cys	13895	12	III	Japan	"58,128"	
+X	154532257	C>T	"Kaiping, Anant, Dhon"	1388G>A	Arg>His	13896	12	II	China	"145,148"	
+X	154532245	G>C	Neapolis	1400C>G	Pro>Arg	13908	12	III	Italy	151	
+X	154532231	T>G	Laibin	1414A>C	Ile>Leu	13922	12	NR	China	46	
+X	154532203	G>C	Split	1442C>G	Pro>Arg	13950	12	III	Croatia	152	
+X	154532086	C>T	Fukaya	1462G>A	Gly>Ser	14067	13	I	Japan	60	
+X	154532085	C>A	Campinas	1463G>T	Gly>Val	14068	13	I	Brazil	153	
+X	154532083	G>A	Buenos Aires	1465C>T	Pro>Ser	14070	13	I	Argentin (Italy)	154	
+X	154532082	G>A	Arakawa	1466C>T	Pro>Leu	14071	13	I	Japan	9	
+X	154532570	G>T	Georgia	1284C>A	Tyr>End	13583	10	I	Philippines	88	
+X	154531643	C=	No name- no sequence alteration								"rs1050757, ClinVar: 368096"
+X	154535300	T>G	rs2148331380	353A>C	Tyr>Ser	10853	5	?	?	?	rs2148331380
+X	154532439	A>C	Mediterranean related- Synonymous 		Tyr>Ter		?	?	?	?	"rs2230037, ClinVar: 470162"
+X	154532293	G>A	Intronic variant								"rs2071429, ClinVar: 994337"
