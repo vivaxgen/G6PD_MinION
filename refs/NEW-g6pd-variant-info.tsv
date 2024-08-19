@@ -51,7 +51,7 @@ X	154535180	C>T	Shenzen	473G>A	Cys>Tyr	10973	5	II	China	49
 X	154535176	C>G	Gond	477G>C	Met>Ile	10977	5	NR	India	50	
 X	154534495	C>T	Mahidol	487G>A	Gly>Ser	11658	6	II	South East Asia	"51,52"	
 X	154534494	C>T	Plymouth	488G>A	Gly>Asp	11659	6	I	GB	27	
-X	154534489	T>C	Taipei “Chinese-3”	493A>G	Asn>Asp	11664	6	II	China	53	
+X	154534489	T>C	Taipei "Chinese-3"	493A>G	Asn>Asp	11664	6	II	China	53	
 X	154534486	G>A	Toledo	496C>T	Arg>Cys	11667	6	II	France	54	
 X	154534485	C>T	Naone	497G>A	Arg>His	11668	6	II	Southwestern Pacific	25	
 X	154534468	G>A	Volendam	514C>T	Pro>Ser	11685	6	I	Holland	55	
@@ -62,7 +62,7 @@ X	154534447	T>A	Chikugo	535A>T	Ser>Cys	11706	6	I	Japan	60
 X	154534446	C>T	Gaza	536G>A	Ser>Asn	11707	6	NR	Palestine	61	
 X	154534440	T>A	Malaga	542A>T	Asp>Val	11713	6	III	Spain	62	
 X	154534431	G>A	Dindori	551C>T	Ser>Phe	11722	6	II	Central India (Gond Tribe)	63	
-X	154534419	G>A	"Mediterranean, Dallas, “Sassari”"	563C>T	Ser>Phe	11734	6	II	Mediterranean	64	
+X	154534419	G>A	"Mediterranean, Dallas, "Sassari"	563C>T	Ser>Phe	11734	6	II	Mediterranean	64	
 X	154534409	G>C	Pedoplis-Ckaro	573C>G	Phe>Leu	11744	6	I	Georgia	65	
 X	154534400	G>C	No name	582C>G	Asp>Glu	11753	6	NR		66	
 X	154534397	C>G	Tainan	585G>C	Gln>His	11756	6	NR	Taiwan	21	
@@ -198,7 +198,4 @@ X	154532085	C>A	Campinas	1463G>T	Gly>Val	14068	13	I	Brazil	153
 X	154532083	G>A	Buenos Aires	1465C>T	Pro>Ser	14070	13	I	Argentin (Italy)	154	
 X	154532082	G>A	Arakawa	1466C>T	Pro>Leu	14071	13	I	Japan	9	
 X	154532570	G>T	Georgia	1284C>A	Tyr>End	13583	10	I	Philippines	88	
-X	154531643	C=	No name- no sequence alteration								"rs1050757, ClinVar: 368096"
 X	154535300	T>G	rs2148331380	353A>C	Tyr>Ser	10853	5	?	?	?	rs2148331380
-X	154532439	A>C	Mediterranean related- Synonymous 		Tyr>Ter		?	?	?	?	"rs2230037, ClinVar: 470162"
-X	154532293	G>A	Intronic variant								"rs2071429, ClinVar: 994337"

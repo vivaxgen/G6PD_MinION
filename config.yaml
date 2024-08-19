@@ -16,6 +16,7 @@ libprep: ONT
 refseq_file: refs/X.fasta
 refmap_file: refs/X.fasta.ont.mmi
 target_variants: refs/NEW-g6pd-variant-info.bed #g6pd-variants.bed
+target_variants_vcf: refs/g6pd-variants.vcf.gz
 target_regions: refs/g6pd-regions.bed
 interval_file: refs/g6pd.bed
 interval_dir: refs/range_regions
