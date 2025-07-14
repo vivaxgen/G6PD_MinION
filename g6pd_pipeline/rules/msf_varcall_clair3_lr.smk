@@ -13,8 +13,8 @@ target_variants_vcf = config.get('target_variants_vcf', '')
 rule clair3_out_vcf:
     threads: 4
     input:
-        bam = "{pfx}/{sample}/maps/sorted.bam",
-        idx = "{pfx}/{sample}/maps/sorted.bam.bai"
+        bam = "{pfx}/{sample}/maps/final.bam",
+        idx = "{pfx}/{sample}/maps/final.bam.bai"
     output: "{pfx}/{sample}/vcfs/variants.vcf.gz"
     params:
         input_dir = lambda w, input: pathlib.Path(input.bam).parent.resolve().as_posix(),
@@ -26,8 +26,7 @@ rule clair3_out_vcf:
         'mkdir -p {params.output_dir} && '
         'echo {wildcards.sample} > {params.output_dir}/sample_id.txt && '
         'apptainer exec -B {params.input_dir},{params.ref_dir},{params.output_dir},{clair3_model_exdir}:/opt/clair3_models {apptainer_dir}/clair3.sif'
-        ' /opt/bin/run_clair3.sh --bam_fn={params.input_dir}/sorted.bam --ref_fn={refseq}'
+        ' /opt/bin/run_clair3.sh --bam_fn={params.input_dir}/final.bam --ref_fn={refseq}'
         ' --threads={threads} --platform=ont --model_path={model_path}/{model_name} --gvcf {params.clair3_extra_flags} '
         ' --output={params.output_dir} && '
-        'bcftools reheader -s {params.output_dir}/sample_id.txt -o {output} {params.output_dir}/merge_output.vcf.gz && '
-        'echo {wildcards.sample} >> /home/data/malaria/work/ldwg/G6PD/completed.txt'
+        'bcftools reheader -s {params.output_dir}/sample_id.txt -o {output} {params.output_dir}/merge_output.vcf.gz'
