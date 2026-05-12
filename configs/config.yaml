@@ -30,7 +30,9 @@ deduplicate: False
 
 # for clair3
 clair3_extra_flags: --print_ref_calls --base_err=0.05 --snp_min_af=0.0 --indel_min_af=0.0
-
+clair3_mindepth: 10
+clair3_minaltdepth: 5
+clair3_minaltfreq: 0.25
 # adjust this for het call assignment
 freebayes_extra_flags: --min-alternate-count 5 --min-alternate-fraction 0.25
 
