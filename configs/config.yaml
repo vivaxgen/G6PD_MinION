@@ -29,7 +29,7 @@ regions:
 deduplicate: False
 
 # for clair3
-clair3_extra_flags: --print_ref_calls --base_err=0.05 --snp_min_af=0.0 --indel_min_af=0.0
+clair3_extra_flags: --print_ref_calls --base_err=0.05 --snp_min_af=0.0 --indel_min_af=0.0 --var_pct_full=1 --ref_pct_full=1 --var_pct_phasing=1
 clair3_mindepth: 10
 clair3_minaltdepth: 5
 clair3_minaltfreq: 0.25
