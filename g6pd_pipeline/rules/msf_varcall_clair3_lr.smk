@@ -23,12 +23,12 @@ rule rename_set_GT:
         minimum_depth = config.get('clair3_mindepth', 10),
         minimum_minor_depth = config.get('clair3_minaltdepth', 5),
         minimum_minor_ratio = config.get('clair3_minaltfreq', 0.25),
-        headers = f"##cmdline=set_gt.py --minimum_depth {params.clair3_mindepth} --minimum_minor_depth {params.clair3_minaltdepth} --minimum_minor_ratio {params.clair3_minaltfreq}"
+        headers = f"##cmdline=set_gt.py --minimum_depth {config.get('clair3_mindepth', 10)} --minimum_minor_depth {config.get('clair3_minaltdepth', 5)} --minimum_minor_ratio {config.get('clair3_minaltfreq', 0.25)}"
     shell:
         '''
         bcftools reheader -s {params.output_dir}/sample_id.txt -o {output.renamed} {input} && 
         python3 {params.scripts_path} --infile {output.renamed} --outfile {output.final} --minimum_depth {params.minimum_depth} \
-        --minimum_minor_depth {params.minimum_minor_depth} --minimum_minor_ratio {params.minimum_minor_ratio} --headers {params.headers}
+        --minimum_minor_depth {params.minimum_minor_depth} --minimum_minor_ratio {params.minimum_minor_ratio} --headers "{params.headers}"
         '''
 
 rule clair3_out_vcf:
