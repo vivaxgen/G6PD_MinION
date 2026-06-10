@@ -1,10 +1,17 @@
 #!/usr/bin/bash
 
-# installation script for G6PD pipeline
+# installation script for vivaxgen ngs-pipeline [https://github.com/vivaxgen/ngs-pipeline]
 
 # optional variable:
-# - BASEDIR
-# - OMIT
+# - VVG_BASEDIR
+# - PIXI_ENVNAME
+# - VVG_EXCLUDE
+# - VVG_INCLUDE
+# - VVG_NGSPL_REPOURL
+# - VVG_MANIFEST_FILE
+
+__VERSION__="2026.05.12.01"
+echo -e "\e[32m>> vivaxGEN NGS-Pipeline installation script version: ${__VERSION__}\e[0m"
 
 set -eu
 
@@ -24,49 +31,27 @@ case "$parent" in
 esac
 
 # Parsing arguments
-if [ -t 0 ] && [ -z "${BASEDIR:-}" ]; then
+if [ -t 0 ] && [ -z "${VVG_BASEDIR:-}" ]; then
   printf "Pipeline base directory? [./ont-g6pd-pipeline] "
-  read BASEDIR
+  read VVG_BASEDIR
 fi
 
 # default value
-BASEDIR="${BASEDIR:-./ont-g6pd-pipeline}"
+VVG_BASEDIR="${VVG_BASEDIR:-./ont-g6pd-pipeline}"
 
-uMAMBA_ENVNAME='ONT-G6PD'
-OMIT='GATK4'
+PIXI_ENVNAME='ONT-G6PD'
+VVG_EXCLUDE='gatk4'
+
+echo -e "\e[32m>> Installing vivaxGEN G6PD Pipeline pipeline to ${VVG_BASEDIR} with environment name ${PIXI_ENVNAME}\e[0m"
 source <(curl -L https://raw.githubusercontent.com/vivaxgen/ngs-pipeline/main/install.sh)
 
-echo Installing apptainer
-micromamba -y install apptainer -c conda-forge -c bioconda
-micromamba -y install squashfuse -c conda-forge
+echo -e "\e[32m>> Cloning vivaxGEN G6PD Pipeline pipeline\e[0m"
+git clone --depth 1  ${VVG_G6PD_REPOURL:-https://github.com/vivaxgen/G6PD_MinION.git} ${ENVS_DIR}/G6PD-pipeline
 
-echo "Cloning G6PD pipeline"
-git clone https://github.com/vivaxgen/G6PD_MinION.git ${ENVS_DIR}/G6PD-pipeline
-
-ln -sr ${ENVS_DIR}/G6PD-pipeline/bin/update-pipeline.sh ${BASEDIR}/bin/update-pipeline.sh
-
-git clone https://github.com/nanoporetech/rerio.git ${ENVS_DIR}/rerio
-ln -sr ${ENVS_DIR}/rerio ${BASEDIR}/opt/rerio
-ln -sr ${ENVS_DIR}/rerio/clair3_models ${BASEDIR}/opt/clair3_models
-ln -sr ${ENVS_DIR}/G6PD-pipeline/bin/check_n_download_model.py ${BASEDIR}/opt/rerio/check_n_download_model.py
-
-echo "http://www.bio8.cs.hku.hk/clair3/clair3_models/r941_prom_hac_g360+g422_1235.tar.gz" > ${ENVS_DIR}/rerio/clair3_models/r941_prom_hac_g360+g422_1235_model
-
-python ${BASEDIR}/opt/rerio/check_n_download_model.py
-mv ${BASEDIR}/opt/clair3_models/ont ${ENVS_DIR}/rerio/clair3_models/r941_prom_hac_g360+g422_1235
-#echo "source \${VVG_BASEDIR}/env/G6PD-pipeline/activate.sh" >> ${BASEDIR}/bin/activate.sh
-ln -sr ${ENVS_DIR}/G6PD-pipeline/etc/bashrc.d/50-g6pd-pipeline ${BASHRC_DIR}/
-
-echo "Reloading source files"
-reload_vvg_profiles
-
-# install Clair3 using apptainer/singularity image, since the conda-based
-# installation requires python version 3.9.0, conflicting with our python 3.11
-echo "Downloading Clair3 apptainer/singularity image"
-retry 5 apptainer pull ${APPTAINER_DIR}/clair3.sif docker://hkubal/clair3:latest
-
-echo "Indexing reference sequence"
+source ${ENVS_DIR}/G6PD-pipeline/etc/inst-scripts/inst-stage-2.sh
 ngs-pl index-reference
+
+echo "G6PD Pipeline" >> ${ETC_DIR}/installed-repo.txt
 
 echo
 echo "G6PD pipeline has been successfully installed."
