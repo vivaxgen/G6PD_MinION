@@ -4,13 +4,6 @@ include: ngs_pipeline.rules.path("ssf_varcall_clair3.smk")
 
 #NGS_PIPELINE_BASE = config['NGS_PIPELINE_BASE']
 NGSENV_BASEDIR = os.environ['NGSENV_BASEDIR']
-VVG_BASEDIR = os.environ['VVG_BASEDIR']
-
-
-apptainer_dir = f"{pathlib.Path(VVG_BASEDIR)}/opt/apptainer"
-clair3_model_exdir = pathlib.Path(f"{pathlib.Path(VVG_BASEDIR)}/opt/clair3_models").resolve().as_posix()
-model_path = config.get('model_path', '/opt/models')
-model_name = config.get('model_name', 'r941_prom_sup_g5014')
 
 target_variants_vcf = config.get('target_variants_vcf', '')
 
