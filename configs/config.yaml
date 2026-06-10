@@ -7,6 +7,17 @@ tailcrop: 40
 mindepth: 20
 min_variant_qual: 10
 
+# More standardised config keys
+minlen: 2000
+maxlen: 10000
+
+fastplong_cut_tail_window_size: 10
+fastplong_cut_tail_mean_quality: 1
+fastplong_trim_front: 20
+fastplong_trim_tail: 20
+
+msf_trimmer_wf: msf_trimmer_fastplong.smk
+
 # to satisfy global_params.smk
 read_length: -1
 platform: ONT
