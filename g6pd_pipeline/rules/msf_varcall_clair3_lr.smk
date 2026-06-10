@@ -37,7 +37,7 @@ use rule ssf_varcall_clair3 as clair3_out_vcf with:
         bam = "{pfx}/{sample}/maps/final.bam",
         idx = "{pfx}/{sample}/maps/final.bam.bai",
     output:
-        vcf = "{pfx}/{sample}/vcfs/merge_output.vcf.gz"
+        vcf = "{pfx}/{sample}/vcfs/merge_output.vcf.gz",
         vcf_tbi = "{pfx}/{sample}/vcfs/merge_output.vcf.gz.tbi"
     log:
         log1 = "{pfx}/{sample}/logs/clair3.log",
