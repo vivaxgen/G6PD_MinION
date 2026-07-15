@@ -1,12 +1,19 @@
 #!/usr/bin/bash
 
-# installation script for G6PD pipeline
+# installation script for vivaxgen g6pd-minion pipeline [https://github.com/vivaxgen/g6pd-minion]
 
 # optional variable:
 # - VVG_BASEDIR
+# - PIXI_ENVNAME
 # - VVG_EXCLUDE
 # - VVG_INCLUDE
+# - VVG_NGSPL_REPOURL
 # - VVG_G6PD_REPOURL
+# - VVG_MANIFEST_FILE
+
+__VERSION__="2026.07.15.01"
+echo -e "\e[32m>> vivaxGEN G6PD_MinIon pipeline installation script version: ${__VERSION__}\e[0m"
+
 
 set -eu
 
@@ -26,7 +33,7 @@ case "$parent" in
 esac
 
 # Parsing arguments
-if [ -t 0 ] && [ -z "${VVG_BASEDIR:-}" ]; then
+if [ -t 0 ] && [ -z "${VVG_VVG_BASEDIR:-}" ]; then
   printf "Pipeline base directory? [./ont-g6pd-pipeline] "
   read VVG_BASEDIR
 fi
@@ -36,20 +43,19 @@ VVG_BASEDIR="${VVG_BASEDIR:-./ont-g6pd-pipeline}"
 
 PIXI_ENVNAME='ONT-G6PD'
 VVG_EXCLUDE='gatk4'
-echo ">> Installing NGS-Pipeline"
+
+echo -e "\e[32m>> Installing vivaxGEN G6PD Pipeline pipeline to ${VVG_BASEDIR} with environment name ${PIXI_ENVNAME}\e[0m"
+
+echo -e "\e[32m>> Installing vivaxGEN NGS-Pipeline\e[0m"
 source <(curl -L https://raw.githubusercontent.com/vivaxgen/ngs-pipeline/main/install.sh)
 
-#echo Installing apptainer
-#micromamba -y install apptainer -c conda-forge -c bioconda
-#micromamba -y install squashfuse -c conda-forge
+echo -e "\e[32m>> Cloning vivaxGEN G6PD Pipeline pipeline\e[0m"
+git clone --depth 1  ${VVG_G6PD_REPOURL:-https://github.com/vivaxgen/G6PD_MinION.git} ${ENVS_DIR}/G6PD-pipeline
 
-echo ">> Cloning G6PD pipeline"
-git clone --depth 1 ${VVG_G6PD_REPOURL:-https://github.com/vivaxgen/G6PD_MinION.git} ${ENVS_DIR}/G6PD-pipeline
-
-echo ">> Executing G6PD pipeline installation stage 2 script"
 source ${ENVS_DIR}/G6PD-pipeline/etc/inst-scripts/inst-stage-2.sh
+ngs-pl index-reference
 
-echo "G6PD-pipeline" >> ${ETC_DIR}/inst-envvars
+echo "G6PD Pipeline" >> ${ETC_DIR}/installed-repo.txt
 
 echo
 echo "G6PD pipeline has been successfully installed."
