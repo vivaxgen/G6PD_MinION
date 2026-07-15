@@ -35,7 +35,7 @@ fi
 VVG_BASEDIR="${VVG_BASEDIR:-./ont-g6pd-pipeline}"
 
 PIXI_ENVNAME='ONT-G6PD'
-VVG_EXCLUDE='GATK4'
+VVG_EXCLUDE='gatk4'
 echo ">> Installing NGS-Pipeline"
 source <(curl -L https://raw.githubusercontent.com/vivaxgen/ngs-pipeline/main/install.sh)
 
@@ -44,7 +44,7 @@ source <(curl -L https://raw.githubusercontent.com/vivaxgen/ngs-pipeline/main/in
 #micromamba -y install squashfuse -c conda-forge
 
 echo ">> Cloning G6PD pipeline"
-git clone -depth 1 ${VVG_G6PD_REPOURL:-https://github.com/vivaxgen/G6PD_MinION.git} ${ENVS_DIR}/G6PD-pipeline
+git clone --depth 1 ${VVG_G6PD_REPOURL:-https://github.com/vivaxgen/G6PD_MinION.git} ${ENVS_DIR}/G6PD-pipeline
 
 echo ">> Executing G6PD pipeline installation stage 2 script"
 source ${ENVS_DIR}/G6PD-pipeline/etc/inst-scripts/inst-stage-2.sh
