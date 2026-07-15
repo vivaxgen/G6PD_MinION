@@ -53,7 +53,6 @@ echo -e "\e[32m>> Cloning vivaxGEN G6PD Pipeline pipeline\e[0m"
 git clone --depth 1  ${VVG_G6PD_REPOURL:-https://github.com/vivaxgen/G6PD_MinION.git} ${ENVS_DIR}/G6PD-pipeline
 
 source ${ENVS_DIR}/G6PD-pipeline/etc/inst-scripts/inst-stage-2.sh
-ngs-pl index-reference
 
 echo "G6PD Pipeline" >> ${ETC_DIR}/installed-repo.txt
 

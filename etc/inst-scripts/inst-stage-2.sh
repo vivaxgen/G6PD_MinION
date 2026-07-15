@@ -9,8 +9,12 @@ ENVS_DIR="${ENVS_DIR:-${VVG_BASEDIR}/envs}"
 INST_SCRIPTS_DIR="${ENVS_DIR}/G6PD-pipeline/etc/inst-scripts"
 
 if [[ -z ${VVG_MANIFEST_FILE:-} ]]; then
-  echo -e "\e[32m>>> No manifest file provided, installing dependencies with inst-deps.sh\e[0m"
+  echo -e "\e[32m>>>> No manifest file provided, installing dependencies with inst-deps.sh\e[0m"
   source ${INST_SCRIPTS_DIR}/inst-deps.sh
 fi
+
+echo -e "\e[32m>>>> Indexing reference files\e[0m"
+ngs-pl index-reference
+
 
 # EOF
