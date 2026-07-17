@@ -12,8 +12,8 @@ from types import SimpleNamespace
 
 NGSENV_BASEDIR = pathlib.Path(check_NGSENV_BASEDIR())
 snakefiles = {
-    'freebayes': 'msf_varcall_freebayes.smk',
-    'clair3':  NGSENV_BASEDIR / 'g6pd_pipeline' / 'rules' / 'msf_varcall_clair3_lr.smk',
+    'freebayes': 'ngs_pipeline::varcaller/freebayes.smk',
+    'clair3':  'g6pd_pipeline::msf_varcall_clair3_lr.smk',
 }
 
 available_clair3_models = list_available_clair3_models()
@@ -70,10 +70,10 @@ def main(args):
     # see the source here:
     # https://github.com/vivaxgen/ngs-pipeline/blob/main/rules/msf_panel_varcall_lr.smk
     # note: the snakefile is the modular version of panel_varcall_lr.smk
-    args.snakefile = 'msf_panel_varcall_lr.smk'
+    args.snakefile = 'ngs_pipeline::msf/panel_varcall_lr.smk'
 
     # set the target to merged_report
-    args.target = ['merged_report', 'all'] #  
+    args.target = ['merge_report', 'all']
 
     # allow for running outside pipeline base enviroment directory
     args.no_config_cascade = True
@@ -81,7 +81,7 @@ def main(args):
     optional_config = {}
 
     if args.caller:
-        optional_config["msf_varcall_wf"] = str(snakefiles[args.caller])
+        optional_config["varcaller_wf"] = str(snakefiles[args.caller])
         if args.caller == "clair3":
             if args.clair_model == "auto_fastq":
                 # Check fastq for model
