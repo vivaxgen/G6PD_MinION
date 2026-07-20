@@ -21,7 +21,7 @@ Quick Start
 
 * Source the activation script that was mentioned after the installation process finished, such as::
 
-    source SOME_DIRECTORY/bin/activate.sh
+    source SOME_DIRECTORY/bin/activate
 
 * Go to the parent directory of where the sample files reside.
   The sample files must be in compressed FASTQ format (fastq.gz).
