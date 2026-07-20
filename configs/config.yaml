@@ -17,6 +17,11 @@ fastplong_trim_front: 20
 fastplong_trim_tail: 20
 
 msf_trimmer_wf: msf_trimmer_fastplong.smk
+trimmer_wf: ngs_pipeline::trimmer/fastplong.smk
+
+# this is targeted non-panel variant calling
+mapper_wf: ngs_pipeline::mapper/minimap2.smk
+varcaller_wf: ngs_pipeline::varcaller/clair3.smk
 
 # to satisfy global_params.smk
 read_length: -1
@@ -44,7 +49,8 @@ clair3_extra_flags: --print_ref_calls --base_err=0.05 --snp_min_af=0.0 --indel_m
 clair3_mindepth: 10
 clair3_minaltdepth: 5
 clair3_minaltfreq: 0.25
-# adjust this for het call assignment
+
+# for freebayes, adjust this for het call assignment
 freebayes_extra_flags: --min-alternate-count 5 --min-alternate-fraction 0.25
 
 # no filter
