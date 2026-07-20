@@ -15,5 +15,9 @@ export NGSENV_BASEDIR="$(dirname $(dirname $_mydir))"
 export PYTHONPATH=${NGSENV_BASEDIR}:${PYTHONPATH}
 export NGS_PIPELINE_CMD_MODS=g6pd_pipeline.cmds:${NGS_PIPELINE_CMD_MODS}
 
+# allow for running outside NGSENV_BASEDIR
+export NGS_PIPELINE_NO_CONFIG_CASCADE=1
+export NGS_PIPELINE_FORCE=1
+
 # EOF
 
