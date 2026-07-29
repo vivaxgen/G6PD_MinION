@@ -14,7 +14,8 @@ if [[ -z ${VVG_MANIFEST_FILE:-} ]]; then
 fi
 
 echo -e "\e[32m>>>> Indexing reference files\e[0m"
-ngs-pl index-reference
+ngs-pl initialize --target panelseq
+ngs-pl initialize --target wgs
 
 
 # EOF
