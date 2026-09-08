@@ -34,6 +34,9 @@ refseq_file: configs/refs/X.fasta
 refmap_file: configs/refs/X.fasta.ont.mmi
 target_variants: configs/refs/NEW-g6pd-variant-info.bed #g6pd-variants.bed
 target_variants_vcf: configs/refs/g6pd-variants.vcf.gz
+target_variants_vcf_amp1: configs/refs/g6pd-variants_amp1.vcf.gz
+target_variants_vcf_amp3: configs/refs/g6pd-variants_amp3.vcf.gz
+amplicon_bed: configs/refs/g6pd_amplicons.bed
 target_regions: configs/refs/g6pd-regions.bed
 interval_file: configs/refs/g6pd.bed
 interval_dir: configs/refs/range_regions

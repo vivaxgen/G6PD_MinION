@@ -31,6 +31,8 @@ def init_argparser():
                    help=('Clair3 models to use, default: [auto_fastq]'
                          'refer to: https://www.bio8.cs.hku.hk/clair3/clair3_models_rerio_pytorch/')
     )
+    p.add_argument('--per_amplicon', action='store_true', default=False,
+                   help='varcall per amplicon, default: False')
     p.add_argument("--flag_failed_variant", action="store_true", default=False,
                    help="Output all variant, including those with depth < mindepth marked with (*) and qual < minqual marked with (^)")
     return p
@@ -95,6 +97,8 @@ def main(args):
             optional_config["generate_variant_report_extra_flags"] += " --flag_failed_variant"
         optional_config["generate_variant_report_extra_flags"] = "--flag_failed_variant"
 
+    if args.per_amplicon:
+        optional_config["amplicon_based"] = True
     run_targeted_variant_caller.run_targeted_variant_caller(args, optional_config)
 
 
