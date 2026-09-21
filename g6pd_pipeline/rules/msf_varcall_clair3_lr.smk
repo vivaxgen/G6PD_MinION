@@ -5,13 +5,14 @@ include: pkg("ngs_pipeline::varcaller/clair3.smk")
 #NGS_PIPELINE_BASE = config['NGS_PIPELINE_BASE']
 NGSENV_BASEDIR = os.environ['NGSENV_BASEDIR']
 
-ruleorder: rename_set_GT > clair3_symlink
+ruleorder: rename_set_GT > clair3_symlink > index_tbi
 
 rule rename_set_GT:
     input:
         "<sp>vcfs/clair3/merge_output.vcf.gz"
     output: 
         final = "<sp>vcfs/variants.vcf.gz",
+        tbi = "<sp>vcfs/variants.vcf.gz.tbi",
     params:
         scripts_path = NGSENV_BASEDIR + '/' + 'scripts' + '/' + 'set_gt.py',
         output_dir = lambda w, output: pathlib.Path(output[0]).parent.resolve().as_posix(),
@@ -23,6 +24,7 @@ rule rename_set_GT:
         '''
         python3 {params.scripts_path} --infile {input} --outfile {output.final} --minimum_depth {params.minimum_depth} \
         --minimum_minor_depth {params.minimum_minor_depth} --minimum_minor_ratio {params.minimum_minor_ratio} --headers "{params.headers}"
+        tabix -f {output.final}
         '''
 
 

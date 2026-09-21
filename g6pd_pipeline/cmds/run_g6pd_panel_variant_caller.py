@@ -33,7 +33,7 @@ def init_argparser():
     )
     p.add_argument('--per_amplicon', action='store_true', default=False,
                    help='varcall per amplicon, default: False')
-    p.add_argument("--flag_failed_variant", action="store_true", default=False,
+    p.add_argument("--no_flag_failed_variant", action="store_false", default=True,
                    help="Output all variant, including those with depth < mindepth marked with (*) and qual < minqual marked with (^)")
     return p
 
@@ -72,7 +72,7 @@ def main(args):
     # see the source here:
     # https://github.com/vivaxgen/ngs-pipeline/blob/main/rules/msf_panel_varcall_lr.smk
     # note: the snakefile is the modular version of panel_varcall_lr.smk
-    args.snakefile = 'ngs_pipeline::msf/panel_varcall_lr.smk'
+    args.snakefile = 'g6pd_pipeline::g6pd_panel_report.smk'
 
     # set the target to merged_report
     args.target = ['merge_report', 'all']
@@ -92,7 +92,7 @@ def main(args):
                 resolved_model = args.clair_model
             optional_config["clair3_model_path"] = ensure_model_exists(resolved_model)
             optional_config["generate_variant_report_extra_flags"] = "--clair3_gvcf"
-    if args.flag_failed_variant:
+    if not args.no_flag_failed_variant:
         if "generate_variant_report_extra_flags" in optional_config:
             optional_config["generate_variant_report_extra_flags"] += " --flag_failed_variant"
         optional_config["generate_variant_report_extra_flags"] = "--flag_failed_variant"

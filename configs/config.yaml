@@ -23,7 +23,7 @@ trimmer_wf: ngs_pipeline::trimmer/fastplong.smk
 mapper_wf: ngs_pipeline::mapper/minimap2_lr.smk
 varcaller_wf: ngs_pipeline::varcaller/clair3.smk
 jointvarcaller_wf: ngs_pipeline::jointvarcaller/glnexus.smk
-
+minimap2_extra_flags: --MD
 # to satisfy global_params.smk
 read_length: -1
 platform: ONT
@@ -32,16 +32,15 @@ libprep: ONT
 
 refseq_file: configs/refs/X.fasta
 refmap_file: configs/refs/X.fasta.ont.mmi
-target_variants: configs/refs/NEW-g6pd-variant-info.bed #g6pd-variants.bed
-target_variants_vcf: configs/refs/g6pd-variants.vcf.gz
-target_variants_vcf_amp1: configs/refs/g6pd-variants_amp1.vcf.gz
-target_variants_vcf_amp3: configs/refs/g6pd-variants_amp3.vcf.gz
-amplicon_bed: configs/refs/g6pd_amplicons.bed
 target_regions: configs/refs/g6pd-regions.bed
-interval_file: configs/refs/g6pd.bed
 interval_dir: configs/refs/range_regions
-variant_info: configs/refs/NEW-g6pd-variant-info.tsv #g6pd-variant-info.tsv
+#amplicon_bed: configs/refs/g6pd_amplicons.bed
 
+variant_info: configs/refs/g6pd_variants_260909.tsv
+target_variants_vcf: configs/refs/g6pd_variants_260909.vcf.gz
+phase_info: configs/refs/multiple_missenses.bed
+input_allele_only: False
+keep_final_bam: True
 regions:
   - X
 
@@ -55,7 +54,8 @@ clair3_minaltdepth: 5
 clair3_minaltfreq: 0.25
 
 # for freebayes, adjust this for het call assignment
-freebayes_extra_flags: --min-alternate-count 5 --min-alternate-fraction 0.25
+freebayes_extra_flags: --min-alternate-count 5 --min-alternate-fraction 0.25 --report-monomorphic
+freebayes_haplotype_length: -1
 
 # no filter
-read_filters: " "
+read_filters: " " 

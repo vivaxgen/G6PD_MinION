@@ -16,6 +16,6 @@ fi
 echo -e "\e[32m>>>> Indexing reference files\e[0m"
 ngs-pl initialize --target panelseq
 ngs-pl initialize --target wgs
-
+ngs-pl initialize --target variant_vcf
 
 # EOF
