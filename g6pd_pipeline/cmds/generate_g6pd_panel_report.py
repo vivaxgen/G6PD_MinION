@@ -99,8 +99,11 @@ def generate_variant_report(args):
             cerr(f'[WARNING] is_clair_gvcf:{is_clair3_gvcf} - {v.CHROM}:{v.POS} '
                  f'REF: {v.REF}, ALT: {v.ALT} is not found in the infofile, skipping')
 
-    variants_df = pd.concat(variants_df_list, ignore_index=True)
-    variants_df.columns = ["CHROM", "POS", "REF", "ALT", "DP", "QUAL", "GT", "AD"]
+    if len(variants_df_list) > 0:
+        variants_df = pd.concat(variants_df_list, ignore_index=True)
+        variants_df.columns = ["CHROM", "POS", "REF", "ALT", "DP", "QUAL", "GT", "AD"]
+    else:
+        variants_df = pd.DataFrame(columns=["CHROM", "POS", "REF", "ALT", "DP", "QUAL", "GT", "AD"])
 
     # fill in missing for variants_df
     missing_from_vcf = info_df[~info_df.set_index(["CHROM", "POS"]).index.isin(variants_df.set_index(["CHROM", "POS"]).index)]

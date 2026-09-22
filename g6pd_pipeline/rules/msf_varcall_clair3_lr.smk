@@ -6,6 +6,12 @@ include: pkg("ngs_pipeline::varcaller/clair3.smk")
 NGSENV_BASEDIR = os.environ['NGSENV_BASEDIR']
 
 ruleorder: rename_set_GT > clair3_symlink > index_tbi
+ruleorder: clair3_g6pd > clair3
+
+use rule clair3 as clair3_g6pd with:
+    params:
+        contig = "--contig X",
+
 
 rule rename_set_GT:
     input:

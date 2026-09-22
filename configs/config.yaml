@@ -37,6 +37,7 @@ interval_dir: configs/refs/range_regions
 #amplicon_bed: configs/refs/g6pd_amplicons.bed
 
 variant_info: configs/refs/g6pd_variants_260909.tsv
+target_variants: configs/refs/g6pd_variants_260909.bed
 target_variants_vcf: configs/refs/g6pd_variants_260909.vcf.gz
 phase_info: configs/refs/multiple_missenses.bed
 input_allele_only: False
@@ -54,7 +55,7 @@ clair3_minaltdepth: 5
 clair3_minaltfreq: 0.25
 
 # for freebayes, adjust this for het call assignment
-freebayes_extra_flags: --min-alternate-count 5 --min-alternate-fraction 0.25 --report-monomorphic
+freebayes_extra_flags: --min-alternate-count 5 --min-alternate-fraction 0.25 --report-monomorphic --use-best-n-alleles 2 -p 2 --limit-coverage 500
 freebayes_haplotype_length: -1
 
 # no filter
