@@ -50,7 +50,7 @@ rule gen_g6pd_report:
         tsv = f"{outdir}/samples/{{sample}}/genetic_report.tsv"
     params:
         min_var_qual = config.get('min_variant_qual', 10),
-        min_depth = config.get('mindepth', 20),
+        min_depth = config.get('report_calling_mindepth', 20),
     shell:
         """
         ngs-pl generate-g6pd-panel-report --infofile {input.variant_info} \

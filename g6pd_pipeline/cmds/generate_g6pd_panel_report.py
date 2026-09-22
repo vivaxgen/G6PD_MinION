@@ -88,8 +88,8 @@ def generate_variant_report(args):
             pos = v.POS
             ref = v.REF
             alt = v.ALT
-            depth = allele_depth
-            qual = v.QUAL
+            depth = max(0, allele_depth)
+            qual = max(0, v.QUAL)
             gt = v.genotypes[0][:-1]
             ad = v.format('AD')[0] if 'AD' in v.FORMAT else [0, 0]
 
@@ -162,7 +162,7 @@ def generate_variant_report(args):
             else:
                 variant = "-"
         
-        if args.no_flag_failed_variant:
+        if not args.no_flag_failed_variant:
             return variant
         else:
             failed_depth = ""

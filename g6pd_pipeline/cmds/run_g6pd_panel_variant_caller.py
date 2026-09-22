@@ -35,6 +35,8 @@ def init_argparser():
                    help='varcall per amplicon, default: False')
     p.add_argument("--no_flag_failed_variant", action="store_false", default=True,
                    help="Output all variant, including those with depth < mindepth marked with (*) and qual < minqual marked with (^)")
+    p.add_argument('--report_mindepth', type=int, default=None,
+                   help='minimum depth to report a variant in the final report, default: None (use config value)')
     return p
 
 def get_clair3_path(model):
@@ -99,6 +101,8 @@ def main(args):
 
     if args.per_amplicon:
         optional_config["amplicon_based"] = True
+    if args.report_mindepth is not None:
+        optional_config["report_calling_mindepth"] = int(args.report_mindepth)
     run_targeted_variant_caller.run_targeted_variant_caller(args, optional_config)
 
 

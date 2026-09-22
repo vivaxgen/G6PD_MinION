@@ -58,5 +58,6 @@ clair3_minaltfreq: 0.25
 freebayes_extra_flags: --min-alternate-count 5 --min-alternate-fraction 0.25 --report-monomorphic --use-best-n-alleles 2 -p 2 --limit-coverage 500
 freebayes_haplotype_length: -1
 
+report_calling_mindepth: 20
 # no filter
 read_filters: " " 
