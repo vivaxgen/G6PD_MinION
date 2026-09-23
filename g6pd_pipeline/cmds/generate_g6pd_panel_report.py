@@ -89,9 +89,9 @@ def generate_variant_report(args):
             ref = v.REF
             alt = v.ALT
             depth = max(0, allele_depth)
-            qual = max(0, v.QUAL)
+            qual = max(0, v.QUAL) if v.QUAL is not None else 0
             gt = v.genotypes[0][:-1]
-            ad = v.format('AD')[0] if 'AD' in v.FORMAT else [0, 0]
+            ad = v.format('AD')[0].clip(0) if 'AD' in v.FORMAT else [0, 0]
 
             variants_df_list.append(pd.DataFrame([[chrom, pos, ref, alt, depth, qual, gt, ad]]))
 
@@ -105,6 +105,23 @@ def generate_variant_report(args):
     else:
         variants_df = pd.DataFrame(columns=["CHROM", "POS", "REF", "ALT", "DP", "QUAL", "GT", "AD"])
 
+    # handle freebayes duplicates
+    # duplicated entry with all blank values, remove them
+    dup_entries = variants_df[["CHROM", "POS"]].value_counts().to_frame("count").query("count > 1").reset_index()
+    idx_to_drop = []
+    for _, row in dup_entries.iterrows():
+        chrom = row["CHROM"]
+        pos = row["POS"]
+        dup_rows = variants_df.query("CHROM == @chrom and POS == @pos").copy()
+        dup_rows["alt_s"] = dup_rows["ALT"].apply(lambda x: ",".join(set(sorted(x))))
+        if dup_rows["REF"].nunique() == 1 and dup_rows["alt_s"].nunique() == 1:
+            # get row with DP otherwise, keep the first row
+            if dup_rows["DP"].sum() > 0:
+                idx_to_drop.extend(dup_rows.query("DP == 0").index.tolist())
+            else:
+                idx_to_drop.extend(dup_rows.index.tolist()[1:])
+
+    variants_df = variants_df.drop(idx_to_drop).reset_index(drop=True)
     # fill in missing for variants_df
     missing_from_vcf = info_df[~info_df.set_index(["CHROM", "POS"]).index.isin(variants_df.set_index(["CHROM", "POS"]).index)]
     fill_in_df_list = []
