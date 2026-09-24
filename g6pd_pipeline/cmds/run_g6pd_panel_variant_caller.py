@@ -16,7 +16,7 @@ snakefiles = {
     'clair3':  'g6pd_pipeline::msf_varcall_clair3_lr.smk',
 }
 
-available_clair3_models = list_available_clair3_models()
+available_clair3_models = list_available_clair3_models() if os.environ.get("LIST_CLAIR3_MODELS") else []
 available_clair3_models.append("auto_fastq")
 
 def init_argparser():
@@ -26,10 +26,12 @@ def init_argparser():
                    help='caller to be used [freebayes]')
     p.arg_dict['snakefile'].choices = list(snakefiles.values())
     p.arg_dict['snakefile'].default = snakefiles['freebayes']
-    p.add_argument('--clair_model', choices=available_clair3_models,
+    p.add_argument('--clair_model', type=str,
                    default='auto_fastq',
                    help=('Clair3 models to use, default: [auto_fastq]'
-                         'refer to: https://www.bio8.cs.hku.hk/clair3/clair3_models_rerio_pytorch/')
+                         'refer to: https://www.bio8.cs.hku.hk/clair3/clair3_models_rerio_pytorch/'
+                         f'available modes: {available_clair3_models}'
+                         'set LIST_CLAIR3_MODELS=1 to list available models')
     )
     p.add_argument('--per_amplicon', action='store_true', default=False,
                    help='varcall per amplicon, default: False')
@@ -37,6 +39,8 @@ def init_argparser():
                    help="Output all variant, including those with depth < mindepth marked with (*) and qual < minqual marked with (^)")
     p.add_argument('--report_mindepth', type=int, default=None,
                    help='minimum depth to report a variant in the final report, default: None (use config value)')
+    p.add_argument('--report_minvarqual', type=int, default=None,
+                       help='minimum variant quality to report a variant in the final report, default: None (use config value)')
     return p
 
 def get_clair3_path(model):
@@ -103,6 +107,8 @@ def main(args):
         optional_config["amplicon_based"] = True
     if args.report_mindepth is not None:
         optional_config["report_calling_mindepth"] = int(args.report_mindepth)
+    if args.report_minvarqual is not None:
+        optional_config["report_calling_minvarqual"] = int(args.report_minvarqual)
     run_targeted_variant_caller.run_targeted_variant_caller(args, optional_config)
 
 

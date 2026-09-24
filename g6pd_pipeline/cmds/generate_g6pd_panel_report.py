@@ -193,7 +193,7 @@ def generate_variant_report(args):
             return f"{variant}{failed_depth}{failed_qual}"    
         
     result_df.loc[:, sample] = result_df.apply(lambda row: fill_found_variants_single(row), axis=1)
-    n_failed = result_df.loc[result_df[sample].str.startswith("?"), ["CHROM", "POS"]].drop_duplicates().shape[0]
+    n_failed = result_df.loc[result_df["DP"] < args.mindepth, ["CHROM", "POS"]].drop_duplicates().shape[0]
 
     sample_is_all_hemi_homo = all(result_df[sample].isin(["+", "-", "+d", "-d", "+q", "-q", "+dq", "-dq"]))
 

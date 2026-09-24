@@ -50,14 +50,14 @@ deduplicate: False
 
 # for clair3
 clair3_extra_flags: --print_ref_calls --base_err=0.05 --snp_min_af=0.0 --indel_min_af=0.0 --var_pct_full=1 --ref_pct_full=1 --var_pct_phasing=1
-clair3_mindepth: 20
-clair3_minaltdepth: 5
-clair3_minaltfreq: 0.25
 
 # for freebayes, adjust this for het call assignment
 freebayes_extra_flags: --min-alternate-count 5 --min-alternate-fraction 0.25 --use-best-n-alleles 2 -p 2 --limit-coverage 500
 freebayes_haplotype_length: -1
 
 report_calling_mindepth: 20
+report_calling_minaltdepth: 5
+report_calling_minaltfreq: 0.25
+report_calling_drop_zero_depth: True
 # no filter
 read_filters: " " 

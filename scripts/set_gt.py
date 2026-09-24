@@ -7,6 +7,7 @@ from ngs_pipeline import cout, cerr, cexit
 ap = argparse.ArgumentParser(description="Set GT fields in VCF file")
 ap.add_argument("--infile", help="input VCF file")
 ap.add_argument("--outfile", help="output VCF file")
+ap.add_argument("--drop_zero_depth", action='store_true', default=False, help="drop variants with zero depth from the report")
 ap.add_argument("--minimum_depth", help="minimum depth to call a genotype", type=int, default=-1)
 ap.add_argument("--minimum_minor_depth", help="minimum minor allele depth to call a heterozygous genotype", type=int, default=-1)
 ap.add_argument("--minimum_minor_ratio", help="minimum minor allele ratio to call a heterozygous genotype", type=float, default=-1)
@@ -51,6 +52,7 @@ def set_GT(
     infile: str | pathlib.Path,
     outfile: str | pathlib.Path,
     *,
+    drop_zero_depth: bool = False,
     minimum_depth: int = -1,
     minimum_minor_depth: int = -1,
     minimum_minor_ratio: float = -1,
@@ -90,9 +92,14 @@ def set_GT(
             )
         USE_GT = False
 
-
+    record_to_write = []
+    chrom_pos = []
+    record_depths = []
     for v in vcf:
-
+        depth = v.format("DP") if v.format("DP") is not None else 0
+        if drop_zero_depth:
+            if depth <= 0:
+                continue
         AD = v.format("AD")
         if AD is None: #clair3 sometimes do ./. with only GT for targeted panel
             AD = np.zeros((len(v.genotypes), 2), dtype=int)

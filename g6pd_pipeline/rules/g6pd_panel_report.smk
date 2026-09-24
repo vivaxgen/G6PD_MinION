@@ -1,6 +1,7 @@
 from ngs_pipeline.rules import pkg
 
 include: pkg("ngs_pipeline::msf/panel_varcall_lr.smk")
+include: "set_variant_gt.smk"
 
 # rule full_report:
 #     input:
@@ -39,11 +40,19 @@ rule check_multiple_missense:
         --single --sample {wildcards.sample} --log {log} -o {output.tsv} {input.bam}
         """
 
+use rule merge_vcfs as merge_vcfs_gt_set with:
+    input:
+        vcfs = expand(f"{outdir}/samples/{{sample}}/vcfs/variants.setgt.vcf.gz",
+                      sample=read_files.samples()),
+        idx = expand(f"{outdir}/samples/{{sample}}/vcfs/variants.setgt.vcf.gz.csi",
+                     sample=read_files.samples()),
+
+
 rule gen_g6pd_report:
     threads: 1
     input:
-        vcf = f"{outdir}/samples/{{sample}}/vcfs/variants.vcf.gz",
-        vcf_idx = f"{outdir}/samples/{{sample}}/vcfs/variants.vcf.gz.tbi",
+        vcf = f"{outdir}/samples/{{sample}}/vcfs/variants.setgt.vcf.gz",
+        vcf_idx = f"{outdir}/samples/{{sample}}/vcfs/variants.setgt.vcf.gz.tbi",
         missenses = f"{outdir}/samples/{{sample}}/vcfs/multiple_missense_report.tsv",
         variant_info = variant_info
     output:
@@ -60,3 +69,4 @@ rule gen_g6pd_report:
         """
 
 ruleorder: gen_g6pd_report > gen_report
+ruleorder: merge_vcfs_gt_set > merge_vcfs
