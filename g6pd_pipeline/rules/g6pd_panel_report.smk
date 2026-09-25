@@ -3,6 +3,45 @@ from ngs_pipeline.rules import pkg
 include: pkg("ngs_pipeline::msf/panel_varcall_lr.smk")
 include: "set_variant_gt.smk"
 
+rule full_details_report:
+    input:
+        f"{outdir}/merged_genetic_report.pre.tsv",
+
+if config.get("neg_control", None):
+    for neg_sample in config["neg_control"]:
+        if neg_sample not in read_files.samples():
+            raise ValueError(f"Negative control sample '{neg_sample}' not found in input samples.")
+            exit(1)
+
+    checkpoint determine_highest_negative_depth:
+        input:
+            expand(f"{outdir}/samples/{{sample}}/genetic_report.pre.full_details.tsv", sample=config["neg_control"])
+        output:
+            f"{outdir}/highest_negative_depth.txt"
+        params:
+            current_mindepth = config.get('report_calling_mindepth', 10),
+            required_min_multiplication = 1.25,
+        run:
+            import pandas as pd
+            import math
+
+            highest_depth = max(max(
+                pd.read_table(report, usecols=["DP"])["DP"].max()
+                for report in input
+            )*params.required_min_multiplication, params.current_mindepth)
+            with open(output[0], "w") as depth_file:
+                depth_file.write(f"{math.ceil(highest_depth)}\n")
+else:
+    checkpoint null_highest_negative_depth:
+        output:
+            f"{outdir}/highest_negative_depth.txt"
+        params:
+            current_mindepth = config.get('report_calling_mindepth', 10)
+        run:
+            with open(output[0], "w") as depth_file:
+                depth_file.write(f"{params.current_mindepth}\n")
+
+
 # rule full_report:
 #     input:
 #         f"{outdir}/merged_genetic_report.tsv"
@@ -46,7 +85,27 @@ use rule merge_vcfs as merge_vcfs_gt_set with:
                       sample=read_files.samples()),
         idx = expand(f"{outdir}/samples/{{sample}}/vcfs/variants.setgt.vcf.gz.csi",
                      sample=read_files.samples()),
+    output:
+        vcf = f"{outdir}/merged_variants.setgt.vcf.gz",
 
+use rule merge_vcfs as merge_norm_vcfs_gt_set with:
+    input:
+        vcfs = expand(f"{outdir}/samples/{{sample}}/vcfs/variants.setgt.norm.vcf.gz",
+                      sample=read_files.samples()),
+        idx = expand(f"{outdir}/samples/{{sample}}/vcfs/variants.setgt.norm.vcf.gz.csi",
+                     sample=read_files.samples()),
+    output:
+        vcf = f"{outdir}/merged_variants.setgt.norm.vcf.gz",
+
+rule link_final_vcf:
+    input:
+        vcf = f"{outdir}/merged_variants.setgt.norm.vcf.gz",
+    output:
+        vcf = f"{outdir}/merged.vcf.gz",
+    shell:
+        """
+        ln -srf {input.vcf} {output.vcf}
+        """
 
 rule gen_g6pd_report:
     threads: 1
@@ -54,9 +113,10 @@ rule gen_g6pd_report:
         vcf = f"{outdir}/samples/{{sample}}/vcfs/variants.setgt.vcf.gz",
         vcf_idx = f"{outdir}/samples/{{sample}}/vcfs/variants.setgt.vcf.gz.tbi",
         missenses = f"{outdir}/samples/{{sample}}/vcfs/multiple_missense_report.tsv",
-        variant_info = variant_info
+        variant_info = variant_info,
+        negative_depth = [],
     output:
-        tsv = f"{outdir}/samples/{{sample}}/genetic_report.tsv"
+        multiext(f"{outdir}/samples/{{sample}}/genetic_report.pre", tsv=".tsv", tsv_full=".full_details.tsv")
     params:
         min_var_qual = config.get('min_variant_qual', 10),
         min_depth = config.get('report_calling_mindepth', 20),
@@ -68,5 +128,42 @@ rule gen_g6pd_report:
         --multiple_missenses {input.missenses} {input.vcf}
         """
 
-ruleorder: gen_g6pd_report > gen_report
-ruleorder: merge_vcfs_gt_set > merge_vcfs
+use rule gen_g6pd_report as gen_norm_g6pd_report with:
+    input:
+        vcf = f"{outdir}/samples/{{sample}}/vcfs/variants.setgt.norm.vcf.gz",
+        vcf_idx = f"{outdir}/samples/{{sample}}/vcfs/variants.setgt.norm.vcf.gz.tbi",
+        missenses = f"{outdir}/samples/{{sample}}/vcfs/multiple_missense_report.tsv",
+        variant_info = variant_info,
+        negative_depth = normalized_depth_file,
+    output:
+        multiext(f"{outdir}/samples/{{sample}}/genetic_report.norm", tsv=".tsv", tsv_full=".full_details.tsv")
+    params:
+        min_var_qual = config.get('min_variant_qual', 10),
+        min_depth = normalized_minimum_depth,
+
+rule link_final_report:
+    input:
+        tsv = f"{outdir}/samples/{{sample}}/genetic_report.norm.tsv"
+    output:
+        tsv = f"{outdir}/samples/{{sample}}/genetic_report.tsv"
+    shell:
+        """
+        ln -srf {input.tsv} {output.tsv}
+        """
+use rule merge_report as merge_norm_report with:
+    input:
+        tsv = expand(f"{outdir}/samples/{{sample}}/genetic_report.tsv",
+                     sample=read_files.samples()),
+    output:
+        tsv = f"{outdir}/merged_genetic_report.tsv",
+
+use rule merge_report as merge_non_norm_report with:
+    input:
+        tsv = expand(f"{outdir}/samples/{{sample}}/genetic_report.pre.tsv",
+                     sample=read_files.samples()),
+    output:
+        tsv = f"{outdir}/merged_genetic_report.pre.tsv",
+
+ruleorder: merge_norm_report > merge_report
+ruleorder: link_final_report > gen_report
+ruleorder: link_final_vcf > merge_vcfs

@@ -4,7 +4,7 @@ include: pkg("ngs_pipeline::varcaller/clair3.smk")
 #NGS_PIPELINE_BASE = config['NGS_PIPELINE_BASE']
 
 ruleorder: link_variants > clair3_symlink > index_tbi
-ruleorder: clair3_g6pd > clair3
+ruleorder: clair3_g6pd > clair3 > index_tbi
 
 use rule clair3 as clair3_g6pd with:
     params:

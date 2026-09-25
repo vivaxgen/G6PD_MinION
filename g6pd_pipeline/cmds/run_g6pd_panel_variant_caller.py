@@ -41,6 +41,8 @@ def init_argparser():
                    help='minimum depth to report a variant in the final report, default: None (use config value)')
     p.add_argument('--report_minvarqual', type=int, default=None,
                        help='minimum variant quality to report a variant in the final report, default: None (use config value)')
+    p.add_argument('--neg_control', type=str, default=None, action='append',
+                   help='negative control sample name; may be repeated, default: None')
     return p
 
 def get_clair3_path(model):
@@ -81,7 +83,7 @@ def main(args):
     args.snakefile = 'g6pd_pipeline::g6pd_panel_report.smk'
 
     # set the target to merged_report
-    args.target = ['merge_report', 'all']
+    args.target = ['merge_report', 'all', 'full_details_report']
 
     # allow for running outside pipeline base enviroment directory
     args.no_config_cascade = True
@@ -102,6 +104,9 @@ def main(args):
         if "generate_variant_report_extra_flags" in optional_config:
             optional_config["generate_variant_report_extra_flags"] += " --flag_failed_variant"
         optional_config["generate_variant_report_extra_flags"] = "--flag_failed_variant"
+
+    if args.neg_control:
+        optional_config["neg_control"] = args.neg_control
 
     if args.per_amplicon:
         optional_config["amplicon_based"] = True
