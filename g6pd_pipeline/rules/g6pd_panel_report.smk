@@ -98,6 +98,7 @@ use rule merge_vcfs as merge_norm_vcfs_gt_set with:
         vcf = f"{outdir}/merged_variants.setgt.norm.vcf.gz",
 
 rule link_final_vcf:
+    localrule: True
     input:
         vcf = f"{outdir}/merged_variants.setgt.norm.vcf.gz",
     output:
@@ -105,6 +106,17 @@ rule link_final_vcf:
     shell:
         """
         ln -srf {input.vcf} {output.vcf}
+        """
+
+rule link_final_report:
+    localrule: True
+    input:
+        tsv = f"{outdir}/samples/{{sample}}/genetic_report.norm.tsv"
+    output:
+        tsv = f"{outdir}/samples/{{sample}}/genetic_report.tsv"
+    shell:
+        """
+        ln -srf {input.tsv} {output.tsv}
         """
 
 rule gen_g6pd_report:
@@ -119,7 +131,7 @@ rule gen_g6pd_report:
         multiext(f"{outdir}/samples/{{sample}}/genetic_report.pre", tsv=".tsv", tsv_full=".full_details.tsv")
     params:
         min_var_qual = config.get('min_variant_qual', 10),
-        min_depth = config.get('report_calling_mindepth', 20),
+        min_depth = config.get('report_calling_mindepth', 10),
     shell:
         """
         ngs-pl generate-g6pd-panel-report --infofile {input.variant_info} \
@@ -141,15 +153,6 @@ use rule gen_g6pd_report as gen_norm_g6pd_report with:
         min_var_qual = config.get('min_variant_qual', 10),
         min_depth = normalized_minimum_depth,
 
-rule link_final_report:
-    input:
-        tsv = f"{outdir}/samples/{{sample}}/genetic_report.norm.tsv"
-    output:
-        tsv = f"{outdir}/samples/{{sample}}/genetic_report.tsv"
-    shell:
-        """
-        ln -srf {input.tsv} {output.tsv}
-        """
 use rule merge_report as merge_norm_report with:
     input:
         tsv = expand(f"{outdir}/samples/{{sample}}/genetic_report.tsv",
