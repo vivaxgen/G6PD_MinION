@@ -302,7 +302,7 @@ def generate_variant_report(args):
             match var_result:
                 case "+":
                     pos_hom_var.append(var)
-                case "-":
+                case "-" | "-q" :
                     neg_var.append(var)
                 case "-/+":
                     pos_het_var.append(var)
@@ -312,7 +312,7 @@ def generate_variant_report(args):
                     pos_failed_hom_var.append(var)
                 case "-/+d" | "-/+q" | "-/+dq":
                     pos_failed_het_var.append(var)
-                case "-d" | "-q" | "-dq":
+                case "-d" | "-dq":
                     neg_failed_var.append(var)
                 case "?":
                     unknown_var.append(var)
