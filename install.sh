@@ -54,7 +54,7 @@ git clone --depth 1  ${VVG_G6PD_REPOURL:-https://github.com/vivaxgen/G6PD_MinION
 
 source ${ENVS_DIR}/G6PD-pipeline/etc/inst-scripts/inst-stage-2.sh
 
-echo "G6PD-Pipeline" >> ${ETC_DIR}/installed-repo.txt
+echo "G6PD-pipeline" >> ${ETC_DIR}/installed-repo.txt
 
 echo
 echo "G6PD pipeline has been successfully installed."
