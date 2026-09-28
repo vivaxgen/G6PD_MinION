@@ -3,9 +3,92 @@ from ngs_pipeline.rules import pkg
 include: pkg("ngs_pipeline::msf/panel_varcall_lr.smk")
 include: "set_variant_gt.smk"
 
+## Required files for configs:
+# Hard fail if not found
+amplicon_bed_file = get_abspath(config.get("amplicon_bed"))
+phase_info_file = get_abspath(config.get('phase_info'))
+
 rule full_details_report:
     input:
         f"{outdir}/merged_genetic_report.pre.tsv",
+        f"{outdir}/amplicon_coverage.tsv"
+
+rule merge_coverage_report:
+    input:
+        tsv = expand(f"{outdir}/samples/{{sample}}/amplicon_coverage.tsv",
+                     sample=read_files.samples()),
+    output:
+        tsv = f"{outdir}/amplicon_coverage.tsv",
+    run:
+        import pandas as pd
+        dfs = [pd.read_table(f) for f in input.tsv]
+        merged_df = pd.concat(dfs, ignore_index=True)
+        pivoted = merged_df.pivot(index="sample", columns="Amplicon_name", values=["coverage", "meandepth"])
+        pivoted = pivoted.swaplevel(axis=1).sort_index(axis=1, level=0)
+        pivoted.columns = [f"{amp}_{stat}" for amp, stat in pivoted.columns]
+        pivoted = pivoted.reset_index()
+        pivoted.to_csv(output.tsv, sep="\t", index=False)
+        
+rule amplicon_coverage_report:
+    input:
+        bam = f"{outdir}/samples/{{sample}}/maps/mapped-final.bam",
+        bai = f"{outdir}/samples/{{sample}}/maps/mapped-final.bam.bai",
+        amplicon_target = amplicon_bed_file
+    output:
+        depth_coverage = f"{outdir}/samples/{{sample}}/amplicon_coverage.tsv",
+    run:
+        import pandas as pd
+        import numpy as np
+        from io import StringIO
+        markers = pd.read_table(input.amplicon_target, header=None)
+        if markers.shape[1] < 4:
+            markers.loc[:, 3] = markers.apply(lambda x: f"{x[0]}:{x[1]}-{x[2]}", axis=1)
+        markers.columns = ["Chr", "Start", "End", "Amplicon_name"]
+        all_results = []
+
+        rows = []
+        for chrom, g in markers.groupby("Chr", sort=False):
+            starts = g["Start"].to_numpy()
+            ends = g["End"].to_numpy()
+            names = g["Amplicon_name"].to_numpy()
+            idx = g.index.to_numpy()
+            # every start/end is a potential breakpoint; between consecutive
+            # breakpoints, coverage (how many markers span that stretch) is constant
+            breakpoints = np.unique(np.concatenate([starts, ends]))
+            for seg_start, seg_end in zip(breakpoints[:-1], breakpoints[1:]):
+                covering = np.where((starts <= seg_start) & (ends >= seg_end))[0]
+                if covering.size == 1:          # keep only stretches with exactly 1 marker
+                    i = covering[0]
+                    rows.append((chrom, seg_start, seg_end, names[i], idx[i]))
+        frag = pd.DataFrame(
+            rows, columns=["Chr", "Start", "End", "Amplicon_name", "_marker_idx"]
+        )
+        # re-merge fragments that are still contiguous (same marker, no gap),
+        # so a marker only gets split when a real overlap carved it in two
+        frag = frag.sort_values(["_marker_idx", "Start"]).reset_index(drop=True)
+        prev_end = frag.groupby("_marker_idx")["End"].shift()
+        frag["_group"] = (frag["Start"] != prev_end).groupby(frag["_marker_idx"]).cumsum()
+        markers_to_test = (
+            frag.groupby(["_marker_idx", "_group"], as_index=False)
+                .agg(Chr=("Chr", "first"),
+                     Start=("Start", "min"),
+                     End=("End", "max"),
+                     Amplicon_name=("Amplicon_name", "first"))
+                .drop(columns=["_marker_idx", "_group"])
+                .sort_values(["Chr", "Start"])
+                .reset_index(drop=True)
+        )
+
+        markers_to_test["region"] = markers_to_test["Chr"] + ":" + markers_to_test["Start"].astype(str) + "-" + markers_to_test["End"].astype(str)
+        for marker in markers_to_test["region"]:
+            temp = pd.read_table(StringIO(shell(f"samtools coverage -H -r {marker} {input.bam}", read= True)), header=None, names = ["rname", "startpos", "endpos", "numreads", "covbases", "coverage", "meandepth", "meanbaseq", "meanmapq"])
+            temp["sample"] = wildcards.sample
+            temp["region"] = marker
+            all_results.append(temp)
+        all_results = pd.concat(all_results)
+        full_result = markers_to_test.merge(all_results, left_on="region", right_on="region", how="outer").drop("region", axis=1)
+        full_result.to_csv(output.depth_coverage, sep="\t", index=False)
+        
 
 if config.get("neg_control", None):
     for neg_sample in config["neg_control"]:
@@ -42,29 +125,11 @@ else:
                 depth_file.write(f"{params.current_mindepth}\n")
 
 
-# rule full_report:
-#     input:
-#         f"{outdir}/merged_genetic_report.tsv"
-
-# rule merge_g6pd_report:
-#     input:
-#         expand(f'{outdir}/samples/{{sample}}/genetic_report.tsv', sample=read_files.samples())
-#     output:
-#         f'{outdir}/merged_genetic_report.tsv',
-#     run:
-#         import pandas as pd
-#         dfs = []
-#         for infile in input:
-#             df = pd.read_table(infile, sep="\t")
-#             dfs.append(df)
-#         merged_df = pd.concat(dfs, ignore_index=True, axis=0)
-#         merged_df.to_csv(output[0], sep="\t", index=False)
-
 rule check_multiple_missense:
     input:
         bam = f"{outdir}/samples/{{sample}}/maps/mapped-final.bam",
         idx = f"{outdir}/samples/{{sample}}/maps/mapped-final.bam.bai",
-        phase_info = get_abspath(config.get('phase_info')),
+        phase_info = phase_info_file,
     output:
         tsv = f"{outdir}/samples/{{sample}}/vcfs/multiple_missense_report.tsv"
     log:
