@@ -63,6 +63,8 @@ def check_fastq_for_model(reads):
     from smart_open import open as smart_open
     import re
     known_model = set()
+    if available_clair3_models == ["auto_fastq"]:
+        available_clair3_models = list_available_clair3_models()
     clair3_models = [m for m in available_clair3_models if m != "auto_fastq"]
     while known_model == set():
         for r in reads:
