@@ -68,15 +68,16 @@ def check_fastq_for_model(reads):
         models = list_available_clair3_models()
 
     clair3_models = [m for m in models if m != "auto_fastq"]
-    while known_model == set():
-        for r in reads:
-            with smart_open(r) as f:
-                header = f.readline().strip().replace(".", "").replace("@", "_")
-                for model in clair3_models:
-                    if model in header:
-                        known_model.add(model)
+    for r in reads:
+        with smart_open(r) as f:
+            header = f.readline().strip().replace(".", "").replace("@", "_")
+            for model in clair3_models:
+                if model in header:
+                    known_model.add(model)
     if len(known_model) == 0:
         cexit("Could not determine Clair3 model from FASTQ headers. Please specify the model using --clair_model.")
+    if len(known_model) > 1:
+        cexit(f"Multiple Clair3 models detected in FASTQ headers: {', '.join(known_model)}. Please specify the model using --clair_model.")
     return known_model.pop()
 
 def main(args):
