@@ -21,8 +21,8 @@ trimmer_wf: ngs_pipeline::trimmer/fastplong.smk
 
 # this is targeted non-panel variant calling
 mapper_wf: ngs_pipeline::mapper/minimap2_lr.smk
-varcaller_wf: ngs_pipeline::varcaller/clair3.smk
-jointvarcaller_wf: ngs_pipeline::jointvarcaller/glnexus.smk
+varcaller_wf: g6pd_pipeline::ssf_varcall_clair3_lr.smk
+joint_variant_caller_wf: ngs_pipeline::jointvarcaller/glnexus.smk
 minimap2_extra_flags: --MD
 # to satisfy global_params.smk
 read_length: -1

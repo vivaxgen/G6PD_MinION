@@ -186,7 +186,7 @@ def generate_variant_report(args):
             failed_qual = ""
             if variant != "?":
                 # het threshold and depth for alleles handled upstream
-                if row["DP"] < args.mindepth:
+                if row["DP"] < args.mindepth or sum(row["AD"]) < args.mindepth:
                     failed_depth = "d"
                 if row["QUAL"] < args.min_var_qual:
                     failed_qual = "q"

@@ -126,6 +126,7 @@ else:
 
 
 rule check_multiple_missense:
+    threads: 2
     input:
         bam = f"{outdir}/samples/{{sample}}/maps/mapped-final.bam",
         idx = f"{outdir}/samples/{{sample}}/maps/mapped-final.bam.bai",
@@ -141,7 +142,7 @@ rule check_multiple_missense:
         """
         ngs-pl construct-pseudo-haplotypes --min_qual {params.min_qual} \
         --min_mapq {params.min_mapq} --variants_list {input.phase_info} \
-        --single --sample {wildcards.sample} --log {log} -o {output.tsv} {input.bam}
+        --single --sample {wildcards.sample} --log {log} -j {threads} -o {output.tsv} {input.bam}
         """
 
 use rule merge_vcfs as merge_vcfs_gt_set with:
